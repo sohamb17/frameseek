@@ -1,0 +1,68 @@
+{
+  "_comment": "Scripted multi-turn tasks for the conversational layer. Every expectation is about system behaviour that can be checked without human relevance judgments: did 'the second result' resolve to the item that was displayed second, did a filter hold for every result, was the topic kept, was a clarification asked only when the reference was ambiguous. Relevance of the retrieved moments is measured separately by the labeled retrieval evaluation.",
+  "tasks": [
+    {"id": "refine-type-then-expand", "turns": [
+      {"say": "where do they show circuit boards wired together", "expect": {"status": "ok", "min_results": 3}},
+      {"say": "only the demos", "expect": {"status": "ok", "content_types": ["demo"], "topic_kept": true}},
+      {"say": "show more context around the second result", "expect": {"status": "ok", "expand_of": 2}}
+    ]},
+    {"id": "expand-then-within-video", "turns": [
+      {"say": "how does replication work between regions", "expect": {"status": "ok", "min_results": 3}},
+      {"say": "show more context around the third result", "expect": {"status": "ok", "expand_of": 3}},
+      {"say": "search within this video", "expect": {"status": "ok", "within_video_of": "selected", "topic_kept": true}}
+    ]},
+    {"id": "exclude-referenced-video", "turns": [
+      {"say": "databases that distribute data across nodes", "expect": {"status": "ok", "min_results": 3}},
+      {"say": "expand the first result", "expect": {"status": "ok", "expand_of": 1}},
+      {"say": "find the same topic in another video", "expect": {"status": "ok", "excludes_video_of": "selected", "topic_kept": true}}
+    ]},
+    {"id": "ambiguous-video-clarify-and-resume", "turns": [
+      {"say": "what is friction and how does it slow things down", "expect": {"status": "ok", "min_results": 3, "multi_video": true}},
+      {"say": "within this video", "expect": {"status": "clarify", "clarify_options_min": 2}},
+      {"answer_option": 0, "expect": {"status": "ok", "within_video_of": "chosen_option", "topic_kept": true}}
+    ]},
+    {"id": "ambiguous-expand-clarify-and-resume", "turns": [
+      {"say": "the guess the number game", "expect": {"status": "ok", "min_results": 3}},
+      {"say": "show more context", "expect": {"status": "clarify", "clarify_options_min": 2}},
+      {"answer_option": 1, "expect": {"status": "ok", "expand_of": 2}}
+    ]},
+    {"id": "ignore-question-and-ask-new", "turns": [
+      {"say": "how a lever makes lifting easier", "expect": {"status": "ok", "min_results": 3, "multi_video": true}},
+      {"say": "within this video", "expect": {"status": "clarify"}},
+      {"say": "tiup dm deploy command", "expect": {"status": "ok", "new_topic": true, "min_results": 1}}
+    ]},
+    {"id": "ordinal-out-of-range", "turns": [
+      {"say": "power supply and resistor in the demo", "expect": {"status": "ok", "min_results": 1}},
+      {"say": "show more context around the 25th result", "expect": {"status": "ok", "no_results": true}}
+    ]},
+    {"id": "reference-before-any-search", "turns": [
+      {"say": "show more context around the second result", "expect": {"status": "ok", "no_results": true}}
+    ]},
+    {"id": "type-filter-talks", "turns": [
+      {"say": "binlog replication and data migration", "expect": {"status": "ok", "min_results": 3}},
+      {"say": "just talks please", "expect": {"status": "ok", "content_types": ["talk"], "topic_kept": true}},
+      {"say": "show all types again", "expect": {"status": "ok", "topic_kept": true, "no_type_filter": true}}
+    ]},
+    {"id": "type-filter-screencasts", "turns": [
+      {"say": "a shell script that jumps to labels", "expect": {"status": "ok", "min_results": 1}},
+      {"say": "only screencasts", "expect": {"status": "ok", "content_types": ["screencast"], "topic_kept": true}}
+    ]},
+    {"id": "new-topic-clears-filters", "turns": [
+      {"say": "astronaut on the space station explains", "expect": {"status": "ok", "min_results": 1}},
+      {"say": "only the demos", "expect": {"status": "ok", "content_types": ["demo"], "topic_kept": true}},
+      {"say": "where do they discuss sharding", "expect": {"status": "ok", "new_topic": true, "no_type_filter": true}}
+    ]},
+    {"id": "last-result-reference", "turns": [
+      {"say": "oscilloscope showing the waveform", "expect": {"status": "ok", "min_results": 2}},
+      {"say": "expand the last one by 30 seconds", "expect": {"status": "ok", "expand_of": -1, "expand_seconds": 30}}
+    ]},
+    {"id": "topic-words-not-filters", "turns": [
+      {"say": "slides about consistency checks for replicated data", "expect": {"status": "ok", "min_results": 1, "no_type_filter": true}}
+    ]},
+    {"id": "reset", "turns": [
+      {"say": "simple machines like pulleys", "expect": {"status": "ok", "min_results": 1}},
+      {"say": "start over", "expect": {"status": "ok", "no_results": true}},
+      {"say": "show more context around the first result", "expect": {"status": "ok", "no_results": true}}
+    ]}
+  ]
+}

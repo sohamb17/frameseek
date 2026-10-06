@@ -7,5 +7,8 @@
   Created once with `python -m frameseek.eval.labels freeze-splits`; do not regenerate after
   model selection has started.
 
+- `conversation_tasks.json` - scripted multi-turn dialogues for `python -m frameseek.eval.conversation_eval`
+  (development set; checks reference resolution, filters, clarification and turn safety).
+
 Reports are written to the data volume (`/data/eval/reports/`) and shown in the Evaluation tab.
 No labels are included yet: they must be written by a person who watched the videos.
