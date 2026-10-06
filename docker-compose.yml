@@ -1,0 +1,92 @@
+# FrameSeek local stack: `docker compose up --build`, then open http://localhost:8080
+#
+#   db      Postgres 16 + pgvector (metadata, jobs, full-text and vector search)
+#   api     Go public API + built React UI (owns migrations, uploads, jobs, auth, media links)
+#   ml      Python private service: retrieval, learned scorer, LangGraph conversations
+#   worker  Python ingestion worker: FFmpeg, Whisper, Tesseract, MiniLM, OpenCLIP
+#
+# Sized for an 8 GB laptop: the worker unloads each model after its stage (~1.4 GB peak).
+name: frameseek
+
+x-ml-common: &ml-common
+  image: frameseek-ml:local
+  build:
+    context: ./ml
+  env_file:
+    - path: .env
+      required: false
+  environment: &ml-env
+    FRAMESEEK_DATABASE_URL: postgresql://frameseek:frameseek@db:5432/frameseek
+    FRAMESEEK_DATA_DIR: /data
+    FRAMESEEK_CONFIG_DIR: /app/configs
+    FRAMESEEK_EVAL_DIR: /app/eval
+    FRAMESEEK_API_URL: http://api:8080
+    FRAMESEEK_INTERNAL_TOKEN: ${FRAMESEEK_INTERNAL_TOKEN:-dev-internal-token}
+    HF_HOME: /models/hf
+  volumes:
+    - fsdata:/data
+    - models:/models
+    - ./configs:/app/configs:ro
+    - ./eval:/app/eval
+    - ./scripts:/app/scripts:ro
+    - ./api/internal/migrate/sql:/app/schema:ro   # lets the DB tests create a throwaway schema
+  depends_on:
+    api:
+      condition: service_started
+  restart: unless-stopped
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: frameseek
+      POSTGRES_PASSWORD: frameseek
+      POSTGRES_DB: frameseek
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5432:5432"   # handy for psql / VS Code database tools
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U frameseek"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    environment:
+      FRAMESEEK_DATABASE_URL: postgres://frameseek:frameseek@db:5432/frameseek
+      FRAMESEEK_ML_URL: http://ml:8000
+      FRAMESEEK_INTERNAL_TOKEN: ${FRAMESEEK_INTERNAL_TOKEN:-dev-internal-token}
+      FRAMESEEK_MEDIA_SECRET: ${FRAMESEEK_MEDIA_SECRET:-dev-media-secret-change-me}
+      FRAMESEEK_AUTH_MODE: ${FRAMESEEK_AUTH_MODE:-none}
+      FRAMESEEK_TOKENS: ${FRAMESEEK_TOKENS:-}
+    volumes:
+      - fsdata:/data
+      - ./configs:/app/configs:ro
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  ml:
+    <<: *ml-common
+    command: ["uvicorn", "frameseek.service.app:app", "--host", "0.0.0.0", "--port", "8000"]
+
+  worker:
+    <<: *ml-common
+    command: ["python", "-m", "frameseek.worker"]
+    environment:
+      <<: *ml-env
+      FRAMESEEK_WORKER_ID: worker-1
+    stop_grace_period: 5s
+
+volumes:
+  pgdata:
+  fsdata:
+  models:

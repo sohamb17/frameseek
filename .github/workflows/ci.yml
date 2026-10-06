@@ -1,0 +1,45 @@
+name: ci
+on:
+  push:
+  pull_request:
+
+jobs:
+  api:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: api } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: { go-version-file: api/go.mod }
+      - run: go vet ./...
+      - run: go test ./...
+
+  web:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: web } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: web/package-lock.json }
+      - run: npm ci
+      - run: npm run build
+
+  ml:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env: { POSTGRES_USER: frameseek, POSTGRES_PASSWORD: frameseek, POSTGRES_DB: frameseek_test }
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U frameseek" --health-interval 3s --health-retries 20
+    defaults: { run: { working-directory: ml } }
+    env:
+      FRAMESEEK_TEST_DATABASE_URL: postgresql://frameseek:frameseek@localhost:5432/frameseek_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      # Unit + database tests do not need the pretrained models, so torch is not installed here.
+      - run: pip install numpy==2.5.3 joblib==1.6.0 "psycopg[binary]==3.3.6" psycopg-pool==3.3.3 pgvector==0.5.0 pyyaml==6.0.3 pydantic==2.13.5 pillow==12.3.0 pytest==9.1.1
+      - run: pip install --no-deps -e .
+      - run: python -m pytest -q

@@ -1,0 +1,78 @@
+{
+  "_comment": "Permitted sample library for the FrameSeek demo. Media is downloaded locally by scripts/fetch_samples.py and never committed. FOSDEM recordings are CC BY 2.0 BE (attribution required). NASA media is generally not subject to copyright in the US; NASA must be credited and no endorsement may be implied.",
+  "samples": [
+    {
+      "slug": "tidb-replication",
+      "title": "Replication in TiDB & MySQL",
+      "content_type": "talk",
+      "url": "https://video.fosdem.org/2025/ua2114/fosdem-2025-5452-i-like-to-move-it-move-it-replication-in-tidb-mysql.mp4",
+      "source_page": "https://fosdem.org/2025/schedule/event/fosdem-2025-5452-i-like-to-move-it-move-it-replication-in-tidb-mysql/",
+      "start_s": 0,
+      "end_s": null,
+      "reencode": false,
+      "license": "CC BY 2.0 BE",
+      "attribution": "\"I Like To Move IT, Move IT - Replication in TiDB & MySQL\" by Leandro Morgado, FOSDEM 2025"
+    },
+    {
+      "slug": "distributed-databases",
+      "title": "Distributed Databases: Essential or Optional? (excerpt)",
+      "content_type": "talk",
+      "url": "https://video.fosdem.org/2025/ua2114/fosdem-2025-5743-distributed-databases-essential-or-optional-.av1.webm",
+      "source_page": "https://fosdem.org/2025/schedule/event/fosdem-2025-5743-distributed-databases-essential-or-optional-/",
+      "start_s": 0,
+      "end_s": 480,
+      "reencode": true,
+      "license": "CC BY 2.0 BE",
+      "attribution": "\"Distributed Databases: Essential or Optional?\" by Peter Zaitsev, FOSDEM 2025 (first 8 minutes)"
+    },
+    {
+      "slug": "rash-shell-demo",
+      "title": "rash: asynchronous shell - live demo (excerpt)",
+      "content_type": "screencast",
+      "url": "https://video.fosdem.org/2025/h1308/fosdem-2025-4808-rash-asynchronous-shell.av1.webm",
+      "source_page": "https://fosdem.org/2025/schedule/event/fosdem-2025-4808-rash-asynchronous-shell/",
+      "start_s": 640,
+      "end_s": 900,
+      "reencode": false,
+      "_note": "Kept as AV1/Opus WebM on purpose: it exercises the derived browser-playback asset path.",
+      "license": "CC BY 2.0 BE",
+      "attribution": "\"rash: asynchronous shell\" by Niels G. W. Serup, FOSDEM 2025 (10:40-15:00)"
+    },
+    {
+      "slug": "owntech-hardware-demo",
+      "title": "OwnTech power electronics - hardware demo (excerpt)",
+      "content_type": "demo",
+      "url": "https://video.fosdem.org/2025/h2214/fosdem-2025-6078-owntech-update-a-demo-talk-of-our-v1-software-suit-and-hardware-advancements.av1.webm",
+      "source_page": "https://fosdem.org/2025/schedule/event/fosdem-2025-6078-owntech-update-a-demo-talk-of-our-v1-software-suit-and-hardware-advancements/",
+      "start_s": 685,
+      "end_s": 815,
+      "reencode": true,
+      "license": "CC BY 2.0 BE",
+      "attribution": "\"OwnTech Update: A demo-talk of our V1 software suit and hardware advancements\" by Luiz Villa, FOSDEM 2025 (11:25-13:35)"
+    },
+    {
+      "slug": "nasa-simple-machines",
+      "title": "STEMonstrations: Simple Machines",
+      "content_type": "demo",
+      "url": "https://images-assets.nasa.gov/video/jsc2022m000161-STEMonstrations_Simple_Machines_social/jsc2022m000161-STEMonstrations_Simple_Machines_social~medium.mp4",
+      "source_page": "https://images.nasa.gov/details/jsc2022m000161-STEMonstrations_Simple_Machines_social",
+      "start_s": 0,
+      "end_s": null,
+      "reencode": false,
+      "license": "NASA media (public domain in the US; credit NASA, no endorsement implied)",
+      "attribution": "\"STEMonstrations: Simple Machines\", NASA Johnson Space Center"
+    },
+    {
+      "slug": "nasa-friction",
+      "title": "STEMonstrations: Friction",
+      "content_type": "demo",
+      "url": "https://images-assets.nasa.gov/video/jsc2024m000153-STEMonstrations_Friction/jsc2024m000153-STEMonstrations_Friction~medium.mp4",
+      "source_page": "https://images.nasa.gov/details/jsc2024m000153-STEMonstrations_Friction",
+      "start_s": 0,
+      "end_s": null,
+      "reencode": false,
+      "license": "NASA media (public domain in the US; credit NASA, no endorsement implied)",
+      "attribution": "\"STEMonstrations: Friction\", NASA Johnson Space Center"
+    }
+  ]
+}
