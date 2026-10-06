@@ -99,6 +99,10 @@ State per thread (Postgres checkpoint): owner, collection, latest turn `seq`, bo
 
 Turn safety: Go dedupes by `client_turn_id`; Python rejects a turn whose `seq` is not newer than the checkpoint's; a per-thread lock serializes turns in-process; a collection switch clears references.
 
+## Recorded demo build
+
+`VITE_DEMO=1` builds the same UI against static files: `web/public/demo/data.json` (videos, example queries, recorded conversations), one JSON per query and arm, and 240 px thumbnails, all written by `scripts/export_demo.py` from real pipeline output. Playback uses the original public recordings with an `offset_ms` per excerpt, so no media is hosted in the repo. Upload, labeling, evaluation, feedback and bookmarks are hidden in this build.
+
 ## Security notes
 
 - URL import: `https` only, no credentials in URLs, every DNS answer must be a public unicast address (loopback, RFC 1918, link-local/metadata, CGNAT, ULA, NAT64 and documentation ranges are blocked), the connection goes to the checked IP, redirects are re-checked, size and time are bounded, HTML responses are rejected.

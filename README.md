@@ -13,6 +13,8 @@ Search a library of talks, screencasts and demos by what is *said*, what is *wri
 ![Postgres](https://img.shields.io/badge/Postgres-pgvector-4169E1)
 ![LangGraph](https://img.shields.io/badge/LangGraph-conversational%20search-7C3AED)
 
+**[Try the recorded demo](https://sohamb17.github.io/frameseek/)** (no install) · [How it works](#how-search-works) · [Run it locally](#quick-start-windows-macos-linux)
+
 <img src="docs/images/search.png" alt="FrameSeek search results with evidence and the clip player" width="900" />
 
 </div>
@@ -111,7 +113,31 @@ Metric: **query success@K**, i.e. a top-K result in a correct video with tempora
 
 ## Results
 
-> **Not measured yet.** The pipeline, metrics and report are implemented and tested, but numbers require human relevance labels (Label tab), which have not been written yet. This section will be filled from `docs/results/` once a frozen label set exists. No improvement is claimed before then.
+**Retrieval quality (arms A-F): not measured yet.** The pipeline, metrics and report are implemented and tested, but the numbers require human relevance labels (Label tab), which have not been written yet. No retrieval improvement is claimed before then.
+
+**Conversational layer (development set):** 14 scripted dialogues, 35 turns, checked end to end through the API ([full report](docs/results/conversation-dev.md)):
+
+| Property | Result |
+|---|---|
+| "the Nth / last result" resolves to the item actually displayed | 5/5 |
+| type, within-video and exclude-video filters hold for every result | 7/7 |
+| topic kept across refinements | 8/8 |
+| clarification asked when ambiguous / asked unnecessarily | 3/3 / 0 of 32 |
+| duplicate turn replayed, stale turn rejected, other owner blocked | pass |
+| stateless search of the follow-up text alone (baseline) | 0% on all three state-dependent checks |
+
+These dialogues were written alongside the rule-based parser, so they show the behaviour works as designed, not how it generalizes; a held-out set written by someone else is still needed. They do not measure whether retrieved moments are relevant.
+
+## Recorded demo (GitHub Pages)
+
+The [online demo](https://sohamb17.github.io/frameseek/) is the same React UI built in demo mode. It reads JSON responses that the real pipeline produced for 10 example queries (every retrieval arm A-E) and two recorded conversations, and streams the clips from the original FOSDEM and NASA files. It cannot search new text or videos; that needs the Docker stack. Regenerate it after reindexing:
+
+```bash
+docker compose exec worker python /app/scripts/export_demo.py --out /data/demo
+docker compose cp worker:/data/demo/. web/public/demo/
+```
+
+`.github/workflows/pages.yml` publishes it on every push to `main` (enable once: Settings → Pages → Source: GitHub Actions).
 
 ## Reliability
 
@@ -163,6 +189,7 @@ docker compose exec worker python -m frameseek.eval.train --activate
 docker compose exec worker python -m frameseek.eval.evaluate --split dev   # iterate here
 docker compose exec worker python -m frameseek.eval.evaluate --split test  # rarely
 docker compose exec worker python -m frameseek.eval.labels export          # labels -> eval/labels.jsonl (commit it)
+docker compose exec worker python -m frameseek.eval.conversation_eval      # multi-turn checks (eval/conversation_tasks.json)
 ```
 
 ## Supported inputs
