@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "FrameSeek: start stack", "type": "shell", "command": "docker compose up --build -d", "problemMatcher": [] },
+    { "label": "FrameSeek: stop stack", "type": "shell", "command": "docker compose down", "problemMatcher": [] },
+    { "label": "FrameSeek: logs (worker)", "type": "shell", "command": "docker compose logs -f worker", "problemMatcher": [] },
+    { "label": "FrameSeek: fetch sample videos", "type": "shell", "command": "docker compose exec worker python /app/scripts/fetch_samples.py --out /data/samples", "problemMatcher": [] },
+    { "label": "FrameSeek: seed sample library", "type": "shell", "command": "docker compose exec worker python /app/scripts/seed_demo.py --api http://api:8080 --samples /data/samples", "problemMatcher": [] },
+    { "label": "FrameSeek: python tests", "type": "shell", "command": "docker compose exec -e FRAMESEEK_TEST_DATABASE_URL=postgresql://frameseek:frameseek@db:5432/frameseek_test worker python -m pytest -q /app/tests", "problemMatcher": [] },
+    { "label": "FrameSeek: go tests", "type": "shell", "command": "go test ./...", "options": { "cwd": "${workspaceFolder}/api" }, "problemMatcher": ["$go"] },
+    { "label": "FrameSeek: web dev server (hot reload)", "type": "shell", "command": "npm install && npm run dev", "options": { "cwd": "${workspaceFolder}/web" }, "isBackground": true, "problemMatcher": [] }
+  ]
+}

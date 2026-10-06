@@ -1,0 +1,14 @@
+# Query-time configuration. Changing it never triggers reindexing.
+per_channel_k: 30          # candidate budget per channel (blueprint starting point)
+visual_frame_k: 120        # frames pulled from the CLIP channel before mapping to segments
+rrf_k: 60                  # reciprocal-rank-fusion constant for the fixed-fusion baseline
+nms_iou: 0.3               # temporal non-max suppression between overlapping windows
+default_k: 10
+# Weights for fixed fusion (arm E) and the text-only fusion (arm C).
+# Selected on the development split only (see `python -m frameseek.evaluate --tune`).
+fusion_weights:
+  transcript_lex: 1.0
+  transcript_sem: 1.0
+  ocr_lex: 1.0
+  ocr_sem: 1.0
+  visual: 1.0

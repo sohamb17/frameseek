@@ -1,0 +1,23 @@
+# media, models and runtime data never go into Git
+data/
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.wav
+*.joblib
+*.npz
+# secrets
+.env
+# build output / deps
+web/node_modules/
+web/dist/
+api/server
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.DS_Store
+
+# private prep notes
+notes/

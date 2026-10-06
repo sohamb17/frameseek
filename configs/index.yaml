@@ -1,0 +1,47 @@
+# Indexing configuration. The SHA-256 of this file's bytes is the "config hash":
+#   idempotency key of a processing job = sha256(video content hash + ":" + config hash)
+# so editing this file (models, windows, sampling) makes the next /process call build a
+# NEW index version, while re-submitting with an unchanged file is a no-op.
+version: 1
+
+media:
+  max_duration_s: 3600          # proposed cap from the blueprint (60 min)
+  playback_max_width: 1280      # derived browser asset (H.264/AAC MP4) when the original is not browser-safe
+  frame_interval_s: 2.0         # one sampled frame every 2 s ...
+  scene_threshold: 0.30         # ... plus frames at FFmpeg-detected scene changes
+  frame_max_width: 1280         # frames kept large enough for OCR
+  thumb_width: 320
+  transition_diff: 0.10         # mean abs grayscale diff that marks a frame as a transition
+
+asr:
+  engine: faster-whisper
+  model: Systran/faster-whisper-base.en
+  revision: 3d3d5dee26484f91867d81cb899cfcf72b96be6c   # MIT
+  compute_type: int8
+  device: auto                  # "cuda" on a GPU box (e.g. a campus VM)
+  beam_size: 5
+  vad_filter: true
+  language: en
+
+ocr:
+  engine: tesseract
+  min_word_conf: 70
+  reuse_below_diff: 0.02        # skip OCR when a frame is nearly identical to the last OCR'd frame
+  min_words_for_coverage: 3
+
+segments:
+  window_s: 20                  # fixed overlapping windows (blueprint starting point)
+  stride_s: 10
+
+text_encoder:
+  model: sentence-transformers/all-MiniLM-L6-v2
+  revision: 1110a243fdf4706b3f48f1d95db1a4f5529b4d41   # Apache-2.0
+  dim: 384
+
+visual_encoder:
+  engine: open_clip
+  model: ViT-B-32
+  pretrained: laion2b_s34b_b79k
+  hf_repo: laion/CLIP-ViT-B-32-laion2B-s34B-b79K   # MIT
+  hf_revision: 1a25a446712ba5ee05982a381eed697ef9b435cf
+  dim: 512

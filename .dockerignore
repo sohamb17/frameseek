@@ -1,0 +1,7 @@
+data
+web/node_modules
+web/dist
+ml
+eval
+**/__pycache__
+.git
