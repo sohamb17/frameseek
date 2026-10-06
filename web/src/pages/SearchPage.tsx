@@ -6,6 +6,7 @@ import Player from "../components/Player";
 import ResultCard from "../components/ResultCard";
 import WhyPanel from "../components/WhyPanel";
 import { useToast } from "../components/Toast";
+import { DEMO, demoData } from "../lib/demo";
 
 const EXAMPLES = [
   { q: "why does replication lag between regions", kind: "speech" },
@@ -52,6 +53,19 @@ function Hero() {
   );
 }
 
+export function DemoBanner() {
+  const [meta, setMeta] = useState<{ repo_url: string; demo_video_url: string } | null>(null);
+  useEffect(() => { demoData().then((d) => setMeta(d.meta)).catch(() => undefined); }, []);
+  return (
+    <div className="mx-auto mb-4 flex max-w-4xl flex-wrap items-center justify-center gap-x-3 gap-y-1 rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-2 text-left text-xs text-violet-100">
+      <span className="font-semibold">Recorded demo.</span>
+      <span className="text-violet-200/80">Every result was produced by the real pipeline on 6 sample videos and saved; clips stream from the original FOSDEM and NASA recordings.</span>
+      {meta?.demo_video_url && <a className="underline" href={meta.demo_video_url} target="_blank" rel="noreferrer">Watch the demo video</a>}
+      <a className="underline" href={meta?.repo_url ?? "#"} target="_blank" rel="noreferrer">Source and setup on GitHub</a>
+    </div>
+  );
+}
+
 export default function SearchPage() {
   const toast = useToast();
   const [videos, setVideos] = useState<Video[]>([]);
@@ -64,7 +78,17 @@ export default function SearchPage() {
   const [sel, setSel] = useState<SearchResult | null>(null);
   const [fb, setFb] = useState<Record<number, "relevant" | "irrelevant">>({});
 
+  const [examples, setExamples] = useState(EXAMPLES);
   useEffect(() => { api.videos().then(setVideos).catch(() => undefined); }, []);
+  useEffect(() => {
+    if (DEMO) demoData().then((d) => setExamples(d.searches.map((s) => ({ q: s.query, kind: s.kind })))).catch(() => undefined);
+  }, []);
+  // Switching the retrieval arm re-runs the current query so arms can be compared side by side.
+  useEffect(() => {
+    if (resp) run(resp.query);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ranker]);
+  const rankers = DEMO ? RANKERS.filter((r) => r.v !== "F") : RANKERS;
   const ready = videos.filter((v) => v.active_index_version != null);
 
   const run = async (query = q) => {
@@ -78,7 +102,7 @@ export default function SearchPage() {
       setSel(r.results[0] ?? null);
       setFb({});
     } catch (e) {
-      toast(`Search failed: ${(e as Error).message}`, "err");
+      toast(DEMO ? (e as Error).message : `Search failed: ${(e as Error).message}`, "err");
     } finally {
       setLoading(false);
     }
@@ -113,6 +137,7 @@ export default function SearchPage() {
   return (
     <div className="mx-auto max-w-[1400px] px-4 pb-16">
       <div className={clsx("transition-all", resp ? "pt-4" : "pt-16 text-center")}>
+        {DEMO && <DemoBanner />}
         {!resp && (
           <>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
@@ -136,35 +161,37 @@ export default function SearchPage() {
         </form>
 
         <div className={clsx("mt-3 flex flex-wrap items-center gap-2 text-sm", !resp && "justify-center")}>
-          {TYPES.map((t) => (
+          {!DEMO && TYPES.map((t) => (
             <button key={t.v} onClick={() => setTypes((x) => (x.includes(t.v) ? x.filter((y) => y !== t.v) : [...x, t.v]))}
               className={clsx("rounded-full px-3 py-1 text-xs ring-1 transition-colors",
                 types.includes(t.v) ? "bg-sky-500/15 text-sky-300 ring-sky-500/40" : "text-slate-400 ring-ink-700 hover:text-slate-200")}>
               {t.label}
             </button>
           ))}
-          <select className="input py-1 text-xs" value={videoId} onChange={(e) => setVideoId(e.target.value)}>
-            <option value="">All {ready.length} ready videos</option>
-            {ready.map((v) => <option key={v.id} value={v.id}>{v.title}</option>)}
-          </select>
+          {!DEMO && (
+            <select className="input py-1 text-xs" value={videoId} onChange={(e) => setVideoId(e.target.value)}>
+              <option value="">All {ready.length} ready videos</option>
+              {ready.map((v) => <option key={v.id} value={v.id}>{v.title}</option>)}
+            </select>
+          )}
           <select className="input py-1 text-xs" value={ranker} onChange={(e) => setRanker(e.target.value)} title="Retrieval arm (for comparing baselines)">
-            {RANKERS.map((r) => <option key={r.v} value={r.v}>{r.label}</option>)}
+            {rankers.map((r) => <option key={r.v} value={r.v}>{r.label}</option>)}
           </select>
         </div>
 
-        {!resp && (
+        {(!resp || DEMO) && (
           <>
-            <div className="mt-5 flex flex-wrap justify-center gap-2">
-              {EXAMPLES.map((ex) => (
+            <div className={clsx("mt-5 flex flex-wrap gap-2", !resp && "justify-center")}>
+              {examples.map((ex) => (
                 <button key={ex.q} onClick={() => run(ex.q)} className="rounded-full bg-ink-850 px-3 py-1.5 text-xs text-slate-300 ring-1 ring-ink-700 hover:bg-ink-800 hover:text-white">
                   {ex.q} <span className="ml-1 text-slate-500">· {ex.kind}</span>
                 </button>
               ))}
             </div>
-            {ready.length === 0 && (
+            {!resp && ready.length === 0 && !DEMO && (
               <p className="mt-6 text-sm text-amber-300/80">No videos are indexed yet. Add some in the Library tab first.</p>
             )}
-            <Hero />
+            {!resp && <Hero />}
           </>
         )}
       </div>
@@ -173,7 +200,7 @@ export default function SearchPage() {
         <>
           <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500">
             <span className="rounded-md bg-violet-500/10 px-2 py-0.5 text-violet-300 ring-1 ring-violet-500/30">Arm {resp.arm} · {resp.arm_label}</span>
-            <span><Gauge size={12} className="mr-1 inline" />{Math.round(resp.timings.total_ms)} ms
+            <span><Gauge size={12} className="mr-1 inline" />{DEMO && "recorded: "}{Math.round(resp.timings.total_ms)} ms
               <span className="text-slate-600"> (embed {Math.round(resp.timings.embed_ms)} · retrieval {Math.round((resp.timings.candidates_ms ?? 0) + (resp.timings.features_ms ?? 0))} · rank {Math.round(resp.timings.rank_ms ?? 0)})</span></span>
             <span>{resp.videos_searched} videos · {resp.candidate_pool} candidate windows from 5 channels</span>
             {resp.model_version && <span>model {resp.model_version}</span>}
@@ -183,7 +210,7 @@ export default function SearchPage() {
               {resp.results.length === 0 && <div className="card p-6 text-center text-slate-400">No matching moments. Try other words or remove filters.</div>}
               {resp.results.map((r) => (
                 <ResultCard key={r.rank} r={r} active={sel?.rank === r.rank} onSelect={() => setSel(r)}
-                  feedback={fb[r.rank]} onFeedback={(l) => feedback(r, l)} />
+                  feedback={fb[r.rank]} onFeedback={DEMO ? undefined : (l) => feedback(r, l)} />
               ))}
             </div>
             <div className="lg:sticky lg:top-20 lg:self-start">
@@ -197,7 +224,8 @@ export default function SearchPage() {
                     <Player src={sel.playback_url} title={sel.video_title} durationMs={sel.video_duration_ms}
                       poster={sel.evidence.visual?.thumb_url ?? sel.thumb_url}
                       interval={{ start_ms: sel.start_ms, end_ms: sel.end_ms }} markers={markers}
-                      onSave={(iv) => save(sel, iv)} />
+                      offsetMs={sel.offset_ms ?? 0} editable={!DEMO}
+                      onSave={DEMO ? undefined : (iv) => save(sel, iv)} />
                   </div>
                   <WhyPanel r={sel} />
                 </div>

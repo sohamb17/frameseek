@@ -5,6 +5,8 @@ import { api, type ContentType, type Video, type VideoDetail } from "../lib/api"
 import { CONTENT_LABEL, fmtBytes, fmtTime } from "../lib/format";
 import { usePoll } from "../lib/route";
 import { useToast } from "../components/Toast";
+import { DEMO } from "../lib/demo";
+import { DemoBanner } from "./SearchPage";
 
 const STAGES = ["queued", "extracting", "transcribing", "embedding", "indexing", "ready"] as const;
 const STAGE_HELP: Record<string, string> = {
@@ -200,7 +202,7 @@ export default function LibraryPage() {
           <p className="text-sm text-slate-400">{videos.length} videos · {fmtTime(totalMs)} total · ingestion runs in a background worker with resumable stages</p>
         </div>
       </div>
-      <Uploader onDone={load} />
+      {DEMO ? <DemoBanner /> : <Uploader onDone={load} />}
       <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {videos.map((v) => (
           <div key={v.id} className="card overflow-hidden">
@@ -213,6 +215,11 @@ export default function LibraryPage() {
             <div className="p-3">
               <div className="line-clamp-1 font-semibold text-slate-100" title={v.title}>{v.title}</div>
               <div className="mt-2"><Pipeline v={v} /></div>
+              {DEMO ? (
+                <div className="mt-3 text-[11px] leading-relaxed text-slate-500">
+                  {v.attribution} · {v.license} · <a className="underline hover:text-slate-300" href={v.source_page ?? "#"} target="_blank" rel="noreferrer">source</a>
+                </div>
+              ) : (
               <div className="mt-3 flex items-center gap-1">
                 <button className="btn btn-ghost px-2 text-xs" onClick={() => setDetail(v.id)}>Details <ChevronRight size={12} /></button>
                 <button className="btn btn-ghost ml-auto px-2" title="Reindex (builds a new version; the current one stays searchable)"
@@ -224,6 +231,7 @@ export default function LibraryPage() {
                   <Trash2 size={14} />
                 </button>
               </div>
+              )}
             </div>
           </div>
         ))}

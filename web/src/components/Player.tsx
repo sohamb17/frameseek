@@ -21,12 +21,18 @@ interface Props {
   playerRef?: React.MutableRefObject<HTMLVideoElement | null>;
   /** Frame shown before playback starts (the matched frame for search results). */
   poster?: string;
+  /**
+   * Where this video's timeline starts inside `src` (ms). Non-zero only in the static demo, which
+   * plays excerpts from the full original recording; all times shown and passed around stay
+   * relative to the excerpt.
+   */
+  offsetMs?: number;
 }
 
 const STEP = 2000;
 
 export default function Player({ src, title, durationMs, interval, markers = [], editable = true, onSave,
-  saveLabel = "Save moment", autoPlay = true, onTime, playerRef, poster }: Props) {
+  saveLabel = "Save moment", autoPlay = true, onTime, playerRef, poster, offsetMs = 0 }: Props) {
   const ref = useRef<HTMLVideoElement | null>(null);
   const [now, setNow] = useState(interval.start_ms);
   const [playing, setPlaying] = useState(false);
@@ -45,7 +51,7 @@ export default function Player({ src, title, durationMs, interval, markers = [],
     lastSrc.current = src;
     if (!v || (!autoPlay && !srcChanged)) return;
     const seek = () => {
-      v.currentTime = interval.start_ms / 1000;
+      v.currentTime = (interval.start_ms + offsetMs) / 1000;
       if (autoPlay) v.play().catch(() => undefined);
     };
     if (v.readyState >= 1) seek();
@@ -58,7 +64,7 @@ export default function Player({ src, title, durationMs, interval, markers = [],
 
   const onTimeUpdate = () => {
     const v = ref.current!;
-    const ms = v.currentTime * 1000;
+    const ms = v.currentTime * 1000 - offsetMs;
     setNow(ms);
     onTime?.(ms);
     if (stopAtEnd && !v.paused && ms >= iv.end_ms && ms - iv.end_ms < 1500) v.pause();
@@ -66,7 +72,7 @@ export default function Player({ src, title, durationMs, interval, markers = [],
 
   const playClip = () => {
     const v = ref.current!;
-    v.currentTime = iv.start_ms / 1000;
+    v.currentTime = (iv.start_ms + offsetMs) / 1000;
     v.play().catch(() => undefined);
   };
   const toggle = () => {
@@ -91,7 +97,7 @@ export default function Player({ src, title, durationMs, interval, markers = [],
   const seekTo = (e: React.MouseEvent<HTMLDivElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
     const v = ref.current!;
-    v.currentTime = ((e.clientX - r.left) / r.width) * (dur / 1000);
+    v.currentTime = (((e.clientX - r.left) / r.width) * dur + offsetMs) / 1000;
   };
 
   return (
@@ -107,7 +113,7 @@ export default function Player({ src, title, durationMs, interval, markers = [],
           onTimeUpdate={onTimeUpdate}
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
-          onLoadedMetadata={(e) => setDur(e.currentTarget.duration * 1000 || durationMs)}
+          onLoadedMetadata={(e) => setDur(offsetMs || !e.currentTarget.duration ? durationMs || dur : e.currentTarget.duration * 1000)}
         />
       </div>
 

@@ -1,3 +1,5 @@
+import { DEMO, demoSearch, demoVideos } from "./demo";
+
 // Typed client for the Go API. Every call goes through /api; media links come back pre-signed.
 
 export type ContentType = "talk" | "screencast" | "demo" | "other";
@@ -23,6 +25,9 @@ export interface Video {
   created_at: string;
   poster_url?: string;
   playback_url?: string;
+  /** Static demo only. */
+  source_page?: string;
+  offset_ms?: number;
   job_id: string | null;
   job_status: string | null;
   job_stage: string | null;
@@ -76,6 +81,8 @@ export interface SearchResult {
   playback_url: string;
   channel_scores: Record<string, ChannelScore>;
   explain: { feature: string; contribution: number }[] | null;
+  /** Static demo only: position of this video's excerpt inside the original source file. */
+  offset_ms?: number;
   low_relevance?: boolean;
   expanded_from?: { start_ms: number; end_ms: number };
   search_id?: string;
@@ -184,7 +191,7 @@ async function req<T>(path: string, init?: RequestInit): Promise<T> {
 
 const json = (body: unknown) => ({ method: "POST", body: JSON.stringify(body) });
 
-export const api = {
+const liveApi = {
   health: () => req<{ api: string; db: string; ml: { ok: boolean; models_ready: boolean } | string }>("/healthz"),
   me: () => req<{ owner_id: string; default_collection_id: string; limits: { max_upload_bytes: number } }>("/api/me"),
   videos: () => req<Video[]>("/api/videos"),
@@ -230,6 +237,11 @@ export const api = {
   deleteEvalQuery: (id: string) => req<void>(`/api/eval/queries/${id}`, { method: "DELETE" }),
   evalReport: () => req<EvalReport>("/api/eval/report"),
 };
+
+// In the GitHub Pages build, reads go to recorded JSON; everything else is hidden by the UI.
+export const api: typeof liveApi = DEMO
+  ? { ...liveApi, videos: demoVideos, search: (p: SearchParams) => demoSearch(p.query, p.ranker === "auto" ? "E" : p.ranker) }
+  : liveApi;
 
 export interface ArmSummary {
   n_answerable: number;

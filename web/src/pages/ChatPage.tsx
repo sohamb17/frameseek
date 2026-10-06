@@ -6,6 +6,8 @@ import { uid } from "../lib/format";
 import Player from "../components/Player";
 import ResultCard from "../components/ResultCard";
 import { useToast } from "../components/Toast";
+import DemoChat from "../components/DemoChat";
+import { DEMO } from "../lib/demo";
 
 interface Msg { role: "user" | "assistant"; text: string; resp?: TurnResponse; turnId?: string }
 
@@ -24,6 +26,10 @@ const store = {
 };
 
 export default function ChatPage() {
+  return DEMO ? <DemoChat /> : <LiveChat />;
+}
+
+function LiveChat() {
   const toast = useToast();
   const [conv, setConv] = useState<string | null>(store.get());
   const [msgs, setMsgs] = useState<Msg[]>([]);
