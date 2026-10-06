@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-speech: #38bdf8;
+  --color-screen: #f59e0b;
+  --color-visual: #a78bfa;
+  --color-ink-950: #070a12;
+  --color-ink-900: #0c111c;
+  --color-ink-850: #111827;
+  --color-ink-800: #1a2232;
+  --color-ink-700: #263044;
+}
+
+html, body, #root { height: 100%; }
+body {
+  @apply bg-ink-950 text-slate-200 font-sans antialiased;
+  background-image:
+    radial-gradient(900px 500px at 10% -10%, rgba(56, 189, 248, 0.08), transparent 60%),
+    radial-gradient(800px 500px at 100% 0%, rgba(167, 139, 250, 0.08), transparent 60%);
+  background-attachment: fixed;
+}
+@layer components {
+  mark { @apply bg-speech/25 text-sky-100 rounded px-0.5; }
+  .mark-screen mark { @apply bg-screen/25 text-amber-100; }
+  .card { @apply bg-ink-900/80 border border-ink-800 rounded-2xl backdrop-blur; }
+  .btn { @apply inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors disabled:opacity-40 disabled:cursor-not-allowed; }
+  .btn-primary { @apply bg-sky-500 text-ink-950 hover:bg-sky-400; }
+  .btn-ghost { @apply text-slate-300 hover:bg-ink-800 hover:text-white; }
+  .btn-outline { @apply border border-ink-700 text-slate-200 hover:bg-ink-800; }
+  .input { @apply bg-ink-850 border border-ink-700 rounded-lg px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500/50 focus:border-sky-500/60; }
+  .label { @apply text-xs font-medium uppercase tracking-wider text-slate-500; }
+  .gradient-text { @apply bg-gradient-to-r from-sky-400 via-violet-400 to-amber-400 bg-clip-text text-transparent; }
+}
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #263044; border-radius: 8px; border: 2px solid transparent; background-clip: padding-box; }
