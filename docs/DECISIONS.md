@@ -29,5 +29,8 @@ The demo must work with no key and no cost. The LLM, when configured, only fills
 ### 9. Labels by content hash, splits by video group
 Labels must survive re-ingestion and live in Git. Splitting by group (series or recording) prevents near-duplicate content from appearing on both sides of a split.
 
+### 9a. AI-written labels, audited by a random human spot-check
+Writing and verifying 60+ labels by hand is the slowest step. The label set is written by an AI assistant from word-level transcript timings, on-screen text and 2-second frames, and a person audits a random, type-stratified sample of 20 (fixed seed) in the Label tab: accept as is, correct, or reject. This is enforced in data: `eval_queries.author`, `spot_check`, `review_verdict`; rejected labels are kept but never used; training and evaluation refuse to run while the sample is unreviewed. Reports state the provenance and the sample's outcome, because labels written from the system's own transcripts can favor the text arms and are not independent human ground truth. Labels the author writes (`owner`) or fully reviews are reported separately.
+
 ### 10. CPU-first model choices
 `faster-whisper base.en` (int8), Tesseract, MiniLM-L6 and OpenCLIP ViT-B/32 fit an 8 GB laptop. The worker unloads each model after its stage. A GPU machine can switch `asr.device` and the model size in `configs/index.yaml` (which creates a new index version).

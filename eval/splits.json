@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "created": "2026-10-06T19:22:55+00:00",
+  "seed": 7,
+  "ratios": {
+    "dev": 0.2,
+    "test": 0.2
+  },
+  "note": "Split by video group (series or single recording). Edit groups before the first model selection only.",
+  "groups": {
+    "stemonstrations": {
+      "split": "test",
+      "videos": [
+        {
+          "content_hash": "0842abc2bbfb53e4ea32528746b0a4111e89b283d75684f18d78ce6536d9d1f1",
+          "title": "STEMonstrations: Simple Machines"
+        },
+        {
+          "content_hash": "52f2616c1b9d70c0afc3e468534efc3b4c15839a558e47a46aa9ece8d6975dcd",
+          "title": "STEMonstrations: Friction"
+        }
+      ]
+    },
+    "distributed databases": {
+      "split": "dev",
+      "videos": [
+        {
+          "content_hash": "309dcfed9919a7f023bb2bff8e4350a777bae5682360427b032056de7675527f",
+          "title": "Distributed Databases: Essential or Optional? (excerpt)"
+        }
+      ]
+    },
+    "d44cb4cb2e13": {
+      "split": "train",
+      "videos": [
+        {
+          "content_hash": "d44cb4cb2e13512b603ce98fb7f86ee90ab34f72e103c6c6cff7d16fdc742e2f",
+          "title": "OwnTech power electronics - hardware demo (excerpt)"
+        }
+      ]
+    },
+    "eb387c70f5ec": {
+      "split": "train",
+      "videos": [
+        {
+          "content_hash": "eb387c70f5ecde136308b56c84f4cd46820d0ceb4c90eef499a83dfdff49efe3",
+          "title": "Replication in TiDB & MySQL"
+        }
+      ]
+    },
+    "rash": {
+      "split": "train",
+      "videos": [
+        {
+          "content_hash": "3b0001c388840d89235c0bf10752608159c656498b4ad4b8b3efe4ca75ff1347",
+          "title": "rash: asynchronous shell - live demo (excerpt)"
+        }
+      ]
+    }
+  }
+}

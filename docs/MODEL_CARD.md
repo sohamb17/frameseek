@@ -14,7 +14,7 @@ Revisions are pinned in `configs/index.yaml` and every stage manifest records th
 ## Learned relevance scorer
 
 - **Type**: `StandardScaler` + `LogisticRegression` over the 25 features in `ml/frameseek/retrieval/features.py` (schema version 1).
-- **Training data**: human-written queries with labeled answer intervals from the `train` split only. A candidate window is positive if it has temporal IoU ≥ 0.3 with an answer or covers at least half of it (evaluation keeps the stricter IoU rule).
+- **Training data**: queries with labeled answer intervals from the `train` split only, written by an AI assistant and audited by a random human spot-check, or written by the author (see Label provenance). Rejected labels are never used. A candidate window is positive if it has temporal IoU ≥ 0.3 with an answer or covers at least half of it (evaluation keeps the stricter IoU rule).
 - **Weighting**: each query's candidates sum to weight 1, then classes are balanced.
 - **Selection**: `C ∈ {0.01, 0.1, 1, 10}` by dev success@5; the abstention threshold is chosen on dev only.
 - **Output**: a relevance score for ranking. It is **not** a calibrated probability.
@@ -42,6 +42,17 @@ This is a feasibility corpus, not an evaluation dataset: six recordings from thr
 3. Assign one type: speech, ocr, visual, mixed, no_answer.
 4. Note ambiguity in the notes field. If no second reviewer adjudicates a subset, report single-annotator bias.
 5. Freeze splits by video group before any model selection; never tune on the test split.
+
+## Label provenance
+
+Every label records its author: `owner` (written by a person in the Label tab), `assistant` (written and checked by an AI assistant) or `assistant-draft` (an AI proposal that counts only after a person reviews it).
+
+The current set, `eval/labels.assistant.jsonl` (79 queries: 32 speech, 17 on-screen text, 13 mixed, 11 visual, 6 no-answer), was written by Claude in two passes: a first draft from transcripts and 8-second keyframes, then a strict pass that set speech boundaries from word-level ASR timings and checked every visual and on-screen-text boundary against the 2-second frames. Claude read transcripts and looked at frames; it did not listen to the audio. Its timelines were verified against the author's indexed copies by matching transcript words (median offset 0 s on all six videos).
+
+- A random sample of 20, stratified by query type (seed 20261006), is flagged `spot_check`. The author watches each one in the Label tab and records a verdict: accepted as is (clip answers the query, edges within about 2 s), corrected, or rejected. Training and evaluation refuse to run until all 20 are done.
+- Rejected labels are kept, so they count against the reported agreement, and are never used.
+- The labels are not independent human ground truth. Queries were written while reading the pipeline's own transcripts, so their wording can lean toward words the ASR produced, which can favor the lexical arms (A, C). The visual and on-screen-text labels are less exposed to this.
+- Every report prints the provenance and the spot-check outcome. Results are described as "on AI-written labels audited by a random author spot-check (X/20 accepted as is)", never as human-labeled.
 
 ## Known limitations
 

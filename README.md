@@ -113,7 +113,7 @@ Metric: **query success@K**, i.e. a top-K result in a correct video with tempora
 
 ## Results
 
-**Retrieval quality (arms A-F): not measured yet.** The pipeline, metrics and report are implemented and tested, but the numbers require human relevance labels (Label tab), which have not been written yet. No retrieval improvement is claimed before then.
+**Retrieval quality (arms A-F): not measured yet.** The pipeline, metrics and report are implemented and tested. The label set (`eval/labels.assistant.jsonl`, 79 queries) was written and checked by an AI assistant (Claude) from word-level transcript timings, on-screen text and 2-second frames; a random, type-stratified sample of 20 is spot-checked by the author in the Label tab, and training and evaluation refuse to run until that check is done. Every report states who wrote the labels and the spot-check outcome (accepted / corrected / rejected). No retrieval improvement is claimed before then.
 
 **Conversational layer (development set):** 14 scripted dialogues, 35 turns, checked end to end through the API ([full report](docs/results/conversation-dev.md)):
 
@@ -183,7 +183,9 @@ docker compose exec -e FRAMESEEK_TEST_DATABASE_URL=postgresql://frameseek:frames
 Evaluation workflow (after writing labels in the UI):
 
 ```bash
-docker compose exec worker python -m frameseek.eval.labels status
+# load the AI-written labels, then do the random spot-check in the Label tab ("Start review")
+docker compose exec worker python -m frameseek.eval.labels import --file /app/eval/labels.assistant.jsonl
+docker compose exec worker python -m frameseek.eval.labels status       # usable labels, spot-check progress
 docker compose exec worker python -m frameseek.eval.labels freeze-splits   # once
 docker compose exec worker python -m frameseek.eval.train --activate
 docker compose exec worker python -m frameseek.eval.evaluate --split dev   # iterate here
@@ -208,7 +210,7 @@ api/        Go public API (cmd/server, internal/{httpapi,store,importer,media,mi
 ml/         Python package frameseek: worker, pipeline/, models/, retrieval/, conversation/, eval/, service/
 web/        React + TypeScript UI
 configs/    index.yaml (hashed into job keys), retrieval.yaml
-eval/       labels.jsonl and splits.json (human labels, committed)
+eval/       labels.assistant.jsonl (AI-written labels + spot-check sample), splits.json, labels.jsonl (export after review)
 scripts/    sample fetcher, seeding, reliability demos
 docs/       architecture, decisions, model card, deployment plan
 ```
