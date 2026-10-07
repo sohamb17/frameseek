@@ -61,6 +61,18 @@ docker compose exec worker python -m frameseek.eval.evaluate --split dev`}</pre>
       <div>
         <h2 className="text-2xl font-bold text-white">Evaluation <span className="text-base font-normal text-slate-500">· {rep.split} split</span></h2>
         <p className="text-sm text-slate-400">{rep.n_queries} labeled queries · {rep.corpus.videos} videos ({rep.corpus.hours} h) · {new Date(rep.created).toLocaleString()} · model {rep.model_id ?? "none"}</p>
+        {rep.label_provenance && (
+          <p className="mt-1 text-xs text-slate-500">
+            Labels: {[
+              rep.label_provenance.owner ? `${rep.label_provenance.owner} written by the author` : "",
+              rep.label_provenance.assistant_draft_reviewed ? `${rep.label_provenance.assistant_draft_reviewed} AI-drafted and verified by the author` : "",
+              rep.label_provenance.assistant ? `${rep.label_provenance.assistant} written and checked by an AI assistant` +
+                (rep.label_provenance.spot_check?.reviewed
+                  ? ` (random spot-check of ${rep.label_provenance.spot_check.reviewed} by the author: ${rep.label_provenance.spot_check.accepted} accepted, ${rep.label_provenance.spot_check.corrected} corrected, ${rep.label_provenance.spot_check.rejected} rejected)`
+                  : "") : "",
+            ].filter(Boolean).join(" · ")}
+          </p>
+        )}
       </div>
       {rep.n_queries < 60 && (
         <div className="card border-amber-500/30 p-3 text-xs text-amber-200/80">

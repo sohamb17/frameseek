@@ -28,7 +28,7 @@ from ..retrieval import search as S
 from ..retrieval.ranker import active_model
 from ..storage import storage
 from . import train as T
-from .labels import LabeledQuery, load_queries, load_splits
+from .labels import LabeledQuery, load_queries, load_splits, provenance, provenance_line, spot_check_pending
 from .metrics import Interval, best_iou, first_hit_rank, grouped_bootstrap, localization, percentile
 
 KS = [1, 5, 10]
@@ -205,7 +205,7 @@ def markdown(rep: dict) -> str:
     lines = [f"# FrameSeek evaluation ({rep['split']} split)", "",
              f"Created {rep['created']}. {rep['n_queries']} labeled queries. Corpus: {rep['corpus']['videos']} videos, "
              f"{rep['corpus']['hours']} h. Index config {rep['index_config_hash'][:12]}. Model: {rep.get('model_id') or 'none'}.",
-             "", "| Arm | System | success@1 | success@5 | success@10 | MRR | cand. recall | n |",
+             "", provenance_line(rep.get("label_provenance")), "", "| Arm | System | success@1 | success@5 | success@10 | MRR | cand. recall | n |",
              "|---|---|---|---|---|---|---|---|"]
     for arm, a in rep["arms"].items():
         o = a["overall"]
@@ -236,7 +236,7 @@ def cross_validate(owner: str) -> dict:
         for arm, m in (("E", None), ("F", model)):
             for r in evaluate_arm(held, arm, m)["per_query"]:
                 rows[arm].append(r)
-    return {arm: summarize(rs) for arm, rs in rows.items()} | {"folds": len(groups),
+    return {arm: summarize(rs) for arm, rs in rows.items()} | {"folds": len(groups), "label_provenance": provenance(qs),
                                                                "protocol": "leave-one-video-group-out, C=1.0"}
 
 
@@ -248,22 +248,29 @@ def main() -> int:
     ap.add_argument("--cv", action="store_true", help="leave-one-group-out E vs F on train+dev")
     ap.add_argument("--no-latency", action="store_true")
     a = ap.parse_args()
+    pending = spot_check_pending(a.owner)
+    if pending:
+        print(f"refusing to evaluate: {pending} spot-check labels are not reviewed yet (Label tab, 'Start review')")
+        return 2
     if a.cv:
         print(json.dumps(cross_validate(a.owner), indent=2))
         return 0
     if a.split == "test" and a.tune:
         print("refusing to tune on the test split")
         return 2
-    qs = load_queries(a.owner)
+    qs = load_queries(a.owner, include_unreviewed=True)
     if a.split != "all":
         if load_splits() is None:
             print("splits are not frozen: run `python -m frameseek.eval.labels freeze-splits` or use --split all")
             return 2
         qs = [q for q in qs if q.split == a.split]
+    label_prov = provenance(qs)
+    qs = [q for q in qs if q.usable]
     if not qs:
-        print("no labeled queries for this split; add some in the UI (Label tab)")
+        print("no usable labeled queries for this split; add or review some in the UI (Label tab)")
         return 2
     print(f"evaluating {len(qs)} queries on split={a.split}")
+    print(provenance_line(label_prov))
     items = T.prepare_all(qs, a.owner)
     model = active_model(ttl_s=0)
     threshold = model.no_answer_threshold if model else None
@@ -272,6 +279,7 @@ def main() -> int:
         "created": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "split": a.split, "n_queries": len(qs),
         "query_types": {t: sum(q.query_type == t for q in qs) for t in sorted({q.query_type for q in qs})},
+        "label_provenance": label_prov,
         "index_config_hash": index_config()[1], "retrieval_config": retrieval_config(),
         "model_id": model.id if model else None, "corpus": corpus_stats(), "arms": {},
         "protocol": {"success": "top-K contains a result in a correct video with temporal IoU >= tau",

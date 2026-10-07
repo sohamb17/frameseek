@@ -1,6 +1,7 @@
 package httpapi
 
 import (
+	"errors"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -29,14 +30,40 @@ func (s *Server) createEvalQuery(w http.ResponseWriter, r *http.Request) {
 	}
 	row, err := s.store.CreateEvalQuery(r.Context(), owner(r), q)
 	if err != nil {
-		if err == store.ErrNotFound {
-			s.fail(w, r, err)
-			return
-		}
-		writeErr(w, http.StatusBadRequest, err.Error())
+		s.labelErr(w, r, err)
 		return
 	}
 	writeJSON(w, http.StatusCreated, row)
+}
+
+func (s *Server) updateEvalQuery(w http.ResponseWriter, r *http.Request) {
+	var q store.NewEvalQuery
+	if err := decode(r, &q); err != nil || q.Query == "" || len(q.Query) > 500 || !queryTypes[q.QueryType] {
+		writeErr(w, http.StatusBadRequest, "need query and query_type (speech|ocr|visual|mixed|no_answer)")
+		return
+	}
+	row, err := s.store.UpdateEvalQuery(r.Context(), owner(r), chi.URLParam(r, "id"), q)
+	if err != nil {
+		s.labelErr(w, r, err)
+		return
+	}
+	writeJSON(w, http.StatusOK, row)
+}
+
+func (s *Server) rejectEvalQuery(w http.ResponseWriter, r *http.Request) {
+	if err := s.store.RejectEvalQuery(r.Context(), owner(r), chi.URLParam(r, "id")); err != nil {
+		s.labelErr(w, r, err)
+		return
+	}
+	w.WriteHeader(http.StatusNoContent)
+}
+
+func (s *Server) labelErr(w http.ResponseWriter, r *http.Request, err error) {
+	if errors.Is(err, store.ErrInvalid) {
+		writeErr(w, http.StatusBadRequest, err.Error())
+		return
+	}
+	s.fail(w, r, err)
 }
 
 func (s *Server) deleteEvalQuery(w http.ResponseWriter, r *http.Request) {

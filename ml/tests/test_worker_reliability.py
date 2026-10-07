@@ -14,7 +14,7 @@ import numpy as np
 import psycopg
 import pytest
 
-from conftest import needs_db
+from conftest import apply_schema, needs_db
 
 pytestmark = [pytest.mark.db, needs_db]
 SCHEMA_DIR = pathlib.Path(os.environ.get("FRAMESEEK_SCHEMA_DIR", pathlib.Path(__file__).parents[2] / "api/internal/migrate/sql"))
@@ -25,9 +25,7 @@ def env(tmp_path_factory):
     url = os.environ["FRAMESEEK_TEST_DATABASE_URL"]
     os.environ["FRAMESEEK_DATABASE_URL"] = url
     with psycopg.connect(url, autocommit=True) as c:
-        if not c.execute("SELECT to_regclass('public.segments')").fetchone()[0]:
-            for f in sorted(SCHEMA_DIR.glob("*.sql")):
-                c.execute(f.read_text())
+        apply_schema(c, SCHEMA_DIR)
         c.execute("TRUNCATE jobs, videos, collections CASCADE")
     from frameseek import config, storage
     config.settings.cache_clear()

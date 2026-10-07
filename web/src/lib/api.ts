@@ -151,6 +151,13 @@ export interface EvalQuery {
   query: string;
   query_type: string;
   notes: string;
+  /** "owner" (Label tab), "assistant-draft" (AI proposal, needs review) or "assistant" (AI-written, audited by spot-check). */
+  author: string;
+  /** Set when a person reviewed an assistant label in the Label tab. */
+  reviewed_at: string | null;
+  /** Assistant label drawn into the random sample a person must check. */
+  spot_check: boolean;
+  review_verdict: "accepted" | "corrected" | "rejected" | null;
   created_at: string;
   answers: { video_id: string; video_title: string; start_ms: number; end_ms: number }[];
 }
@@ -234,6 +241,9 @@ const liveApi = {
   evalQueries: () => req<EvalQuery[]>("/api/eval/queries"),
   addEvalQuery: (q: { query: string; query_type: string; notes: string; answers: { video_id: string; start_ms: number; end_ms: number }[] }) =>
     req<{ id: string }>("/api/eval/queries", json(q)),
+  updateEvalQuery: (id: string, q: { query: string; query_type: string; notes: string; answers: { video_id: string; start_ms: number; end_ms: number }[] }) =>
+    req<{ id: string; author: string }>(`/api/eval/queries/${id}`, { ...json(q), method: "PUT" }),
+  rejectEvalQuery: (id: string) => req<void>(`/api/eval/queries/${id}/reject`, { method: "POST" }),
   deleteEvalQuery: (id: string) => req<void>(`/api/eval/queries/${id}`, { method: "DELETE" }),
   evalReport: () => req<EvalReport>("/api/eval/report"),
 };
@@ -255,6 +265,10 @@ export interface EvalReport {
   split: string;
   n_queries: number;
   query_types: Record<string, number>;
+  label_provenance?: {
+    owner: number; assistant_draft_reviewed: number; assistant_draft_unreviewed: number; assistant?: number; assistant_rejected?: number;
+    spot_check?: { sampled: number; reviewed: number; accepted: number; corrected: number; rejected: number };
+  };
   model_id: string | null;
   primary_arm: string;
   corpus: { videos: number; hours: number; segments: number; indexing_wall_seconds_per_video_hour: Record<string, number> };

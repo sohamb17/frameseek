@@ -34,7 +34,7 @@ from ..retrieval import search as S
 from ..retrieval.features import FEATURE_NAMES, FEATURE_SCHEMA_VERSION, build_matrix
 from ..retrieval.ranker import LoadedRanker, invalidate
 from ..storage import sha256_file, storage
-from .labels import LabeledQuery, load_queries, load_splits
+from .labels import LabeledQuery, load_queries, load_splits, provenance, provenance_line, spot_check_pending
 from .metrics import Interval, first_hit_rank, is_positive
 
 C_GRID = [0.01, 0.1, 1.0, 10.0]
@@ -184,6 +184,11 @@ def main() -> int:
     dev_q = [q for q in qs if q.split == "dev"]
     n_train = sum(bool(q.answers) for q in train_q)
     print(f"labeled queries: train={len(train_q)} (answerable {n_train}), dev={len(dev_q)}; test is not touched")
+    print(provenance_line(provenance(load_queries(a.owner, include_unreviewed=True))))
+    pending = spot_check_pending(a.owner)
+    if pending:
+        print(f"refusing to train: {pending} spot-check labels are not reviewed yet (Label tab, 'Start review')")
+        return 2
     if n_train < a.min_queries and not a.force:
         print(f"refusing to train on {n_train} answerable training queries (< {a.min_queries}). "
               "Label more queries in the UI (Label tab), or ship fixed fusion (arm E).")
@@ -207,7 +212,8 @@ def main() -> int:
     threshold = choose_threshold(dev_items, model) if dev_items else None
     e_dev = success_rate(dev_items, "E") if dev_items else float("nan")
     metrics = {"dev_success@5_iou0.3": {"E": e_dev, "F": results[best_C][0]}, "C": best_C,
-               "train_rows": int(training_rows(train_items)[0].shape[0])}
+               "train_rows": int(training_rows(train_items)[0].shape[0]),
+               "label_provenance": provenance(train_q + dev_q)}
     mid, key = save(pipe, best_C, threshold, train_items, dev_items, metrics)
     coefs = dict(zip(FEATURE_NAMES, np.round(pipe.named_steps["clf"].coef_[0], 3).tolist()))
     print(f"saved model {mid} -> {key}; C={best_C}; abstention threshold={threshold}")

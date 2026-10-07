@@ -61,6 +61,8 @@ export default function Player({ src, title, durationMs, interval, markers = [],
   useEffect(() => {
     if (playerRef) playerRef.current = ref.current;
   });
+  // Another video was loaded: show its duration until its metadata arrives.
+  useEffect(() => { if (durationMs) setDur(durationMs); }, [src, durationMs]);
 
   const onTimeUpdate = () => {
     const v = ref.current!;

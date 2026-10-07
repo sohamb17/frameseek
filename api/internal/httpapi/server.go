@@ -114,6 +114,8 @@ func (s *Server) Routes() http.Handler {
 
 		r.Get("/eval/queries", s.listEvalQueries)
 		r.Post("/eval/queries", s.createEvalQuery)
+		r.Put("/eval/queries/{id}", s.updateEvalQuery)
+		r.Post("/eval/queries/{id}/reject", s.rejectEvalQuery)
 		r.Delete("/eval/queries/{id}", s.deleteEvalQuery)
 		r.Get("/eval/report", s.evalReport)
 	})
