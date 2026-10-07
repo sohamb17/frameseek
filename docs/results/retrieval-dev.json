@@ -1,0 +1,3555 @@
+{
+  "created": "2026-10-07T03:18:52+00:00",
+  "split": "dev",
+  "n_queries": 11,
+  "query_types": {
+    "mixed": 1,
+    "no_answer": 2,
+    "ocr": 2,
+    "speech": 6
+  },
+  "label_provenance": {
+    "owner": 0,
+    "assistant_draft_reviewed": 0,
+    "assistant_draft_unreviewed": 0,
+    "assistant": 11,
+    "assistant_rejected": 0,
+    "spot_check": {
+      "sampled": 4,
+      "reviewed": 4,
+      "accepted": 4,
+      "corrected": 0,
+      "rejected": 0
+    }
+  },
+  "index_config_hash": "c4a2af3963f12be20579f2449322f1600dba81e139feb11d37fec9b851580a3f",
+  "retrieval_config": {
+    "per_channel_k": 30,
+    "visual_frame_k": 120,
+    "rrf_k": 60,
+    "nms_iou": 0.3,
+    "default_k": 10,
+    "fusion_weights": {
+      "transcript_lex": 1.0,
+      "transcript_sem": 1.0,
+      "ocr_lex": 1.0,
+      "ocr_sem": 1.0,
+      "visual": 1.0
+    }
+  },
+  "model_id": "3aa39153bb61",
+  "corpus": {
+    "videos": 6,
+    "hours": 0.598,
+    "segments": 213,
+    "indexing_wall_seconds_per_video_hour": {
+      "asr": 2653.0,
+      "embed": 1620.6,
+      "extract": 535.2,
+      "ocr": 1464.4,
+      "playback": 130.2,
+      "probe": 64.1,
+      "segment": 0.9
+    }
+  },
+  "arms": {
+    "A": {
+      "label": "Transcript keyword search",
+      "overall": {
+        "n_answerable": 9,
+        "n_no_answer": 2,
+        "success@1_iou0.3": 0.2222,
+        "hits@1_iou0.3": 2,
+        "success@5_iou0.3": 0.6667,
+        "hits@5_iou0.3": 6,
+        "success@10_iou0.3": 0.6667,
+        "hits@10_iou0.3": 6,
+        "mrr_iou0.3": 0.4167,
+        "success@1_iou0.5": 0.2222,
+        "hits@1_iou0.5": 2,
+        "success@5_iou0.5": 0.5556,
+        "hits@5_iou0.5": 5,
+        "success@10_iou0.5": 0.5556,
+        "hits@10_iou0.5": 5,
+        "mrr_iou0.5": 0.3611,
+        "candidate_recall_iou0.3": 0.7778,
+        "localization_top1_when_overlapping": {
+          "n": 2,
+          "mean_iou": 0.792,
+          "mean_start_err_s": 4.3,
+          "mean_end_err_s": 1.1,
+          "mean_excess_s": 1.0
+        },
+        "end_to_end_top1_mean_iou": 0.176,
+        "success@5_iou0.3_ci95_grouped": null,
+        "no_answer_false_positive_rate": 1.0,
+        "no_answer_note": "this arm has no abstention threshold, so it always returns results"
+      },
+      "by_query_type": {
+        "mixed": {
+          "n_answerable": 1,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.0,
+          "hits@1_iou0.3": 0,
+          "success@5_iou0.3": 1.0,
+          "hits@5_iou0.3": 1,
+          "success@10_iou0.3": 1.0,
+          "hits@10_iou0.3": 1,
+          "mrr_iou0.3": 0.25,
+          "success@1_iou0.5": 0.0,
+          "hits@1_iou0.5": 0,
+          "success@5_iou0.5": 1.0,
+          "hits@5_iou0.5": 1,
+          "success@10_iou0.5": 1.0,
+          "hits@10_iou0.5": 1,
+          "mrr_iou0.5": 0.25,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 0,
+            "mean_iou": null,
+            "mean_start_err_s": null,
+            "mean_end_err_s": null,
+            "mean_excess_s": null
+          },
+          "end_to_end_top1_mean_iou": 0.0,
+          "success@5_iou0.3_ci95_grouped": null
+        },
+        "no_answer": {
+          "n_answerable": 0,
+          "n_no_answer": 2,
+          "no_answer_false_positive_rate": 1.0,
+          "no_answer_note": "this arm has no abstention threshold, so it always returns results"
+        },
+        "ocr": {
+          "n_answerable": 2,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.0,
+          "hits@1_iou0.3": 0,
+          "success@5_iou0.3": 0.0,
+          "hits@5_iou0.3": 0,
+          "success@10_iou0.3": 0.0,
+          "hits@10_iou0.3": 0,
+          "mrr_iou0.3": 0.0,
+          "success@1_iou0.5": 0.0,
+          "hits@1_iou0.5": 0,
+          "success@5_iou0.5": 0.0,
+          "hits@5_iou0.5": 0,
+          "success@10_iou0.5": 0.0,
+          "hits@10_iou0.5": 0,
+          "mrr_iou0.5": 0.0,
+          "candidate_recall_iou0.3": 0.0,
+          "localization_top1_when_overlapping": {
+            "n": 0,
+            "mean_iou": null,
+            "mean_start_err_s": null,
+            "mean_end_err_s": null,
+            "mean_excess_s": null
+          },
+          "end_to_end_top1_mean_iou": 0.0,
+          "success@5_iou0.3_ci95_grouped": null
+        },
+        "speech": {
+          "n_answerable": 6,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.3333,
+          "hits@1_iou0.3": 2,
+          "success@5_iou0.3": 0.8333,
+          "hits@5_iou0.3": 5,
+          "success@10_iou0.3": 0.8333,
+          "hits@10_iou0.3": 5,
+          "mrr_iou0.3": 0.5833,
+          "success@1_iou0.5": 0.3333,
+          "hits@1_iou0.5": 2,
+          "success@5_iou0.5": 0.6667,
+          "hits@5_iou0.5": 4,
+          "success@10_iou0.5": 0.6667,
+          "hits@10_iou0.5": 4,
+          "mrr_iou0.5": 0.5,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 2,
+            "mean_iou": 0.792,
+            "mean_start_err_s": 4.3,
+            "mean_end_err_s": 1.1,
+            "mean_excess_s": 1.0
+          },
+          "end_to_end_top1_mean_iou": 0.264,
+          "success@5_iou0.3_ci95_grouped": null
+        }
+      },
+      "by_content_type": {
+        "none": {
+          "n_answerable": 0,
+          "n_no_answer": 2,
+          "no_answer_false_positive_rate": 1.0,
+          "no_answer_note": "this arm has no abstention threshold, so it always returns results"
+        },
+        "talk": {
+          "n_answerable": 9,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.2222,
+          "hits@1_iou0.3": 2,
+          "success@5_iou0.3": 0.6667,
+          "hits@5_iou0.3": 6,
+          "success@10_iou0.3": 0.6667,
+          "hits@10_iou0.3": 6,
+          "mrr_iou0.3": 0.4167,
+          "success@1_iou0.5": 0.2222,
+          "hits@1_iou0.5": 2,
+          "success@5_iou0.5": 0.5556,
+          "hits@5_iou0.5": 5,
+          "success@10_iou0.5": 0.5556,
+          "hits@10_iou0.5": 5,
+          "mrr_iou0.5": 0.3611,
+          "candidate_recall_iou0.3": 0.7778,
+          "localization_top1_when_overlapping": {
+            "n": 2,
+            "mean_iou": 0.792,
+            "mean_start_err_s": 4.3,
+            "mean_end_err_s": 1.1,
+            "mean_excess_s": 1.0
+          },
+          "end_to_end_top1_mean_iou": 0.176,
+          "success@5_iou0.3_ci95_grouped": null
+        }
+      },
+      "per_query": [
+        {
+          "id": "17881369-a879-515c-96f9-0dc980a87810",
+          "query": "biggest aws instance you can rent, how many cores and how much memory",
+          "type": "mixed",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 440000,
+              "end_ms": 460000,
+              "score": 0.33333334
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 110000,
+              "end_ms": 130000,
+              "score": 0.23076923
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 170000,
+              "end_ms": 190000,
+              "score": 0.16666667
+            }
+          ],
+          "first_hit@0.3": 4,
+          "first_hit@0.5": 4,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "21a9799c-0204-5c0f-b1cf-591c95784ead",
+          "query": "even a fully managed distributed database doesn't hide its failure modes",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 30000,
+              "end_ms": 50000,
+              "score": 0.33333334
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 60000,
+              "end_ms": 80000,
+              "score": 0.33333334
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 320000,
+              "end_ms": 340000,
+              "score": 0.33333334
+            }
+          ],
+          "first_hit@0.3": null,
+          "first_hit@0.5": null,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "2c820b98-0534-5041-87ca-4be88166aae1",
+          "query": "people running 100 terabyte postgres instances on one server",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 400000,
+              "end_ms": 420000,
+              "score": 0.33333334
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 80000,
+              "end_ms": 100000,
+              "score": 0.2857143
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 170000,
+              "end_ms": 190000,
+              "score": 0.16666667
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.8737864077669902,
+            "start_err_s": 2.0,
+            "end_err_s": 0.6,
+            "excess_s": 2.0
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "3d3f4e1d-5bff-5dae-acce-0f7a1d838346",
+          "query": "chocolate chip cookie recipe",
+          "type": "no_answer",
+          "groups": [
+            "no-answer:3d3f4e1d"
+          ],
+          "top": [],
+          "top_score": null,
+          "content_type": "none"
+        },
+        {
+          "id": "4dd33f2a-007a-5e07-b2a8-467a56c08a42",
+          "query": "raft leader election",
+          "type": "no_answer",
+          "groups": [
+            "no-answer:4dd33f2a"
+          ],
+          "top": [],
+          "top_score": null,
+          "content_type": "none"
+        },
+        {
+          "id": "6a83bde9-80d0-54de-bca2-51902fcf8ca0",
+          "query": "u7inh-32tb.480xlarge",
+          "type": "ocr",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [],
+          "first_hit@0.3": null,
+          "first_hit@0.5": null,
+          "candidate_recall@0.3": false,
+          "candidate_overlap": false,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "6d0eb938-fc5b-5d1d-85b1-e52ef978c38d",
+          "query": "what makes a database distributed instead of a single node with replicas",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 40000,
+              "end_ms": 60000,
+              "score": 0.4117647
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 100000,
+              "end_ms": 120000,
+              "score": 0.4117647
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 60000,
+              "end_ms": 80000,
+              "score": 0.33333334
+            }
+          ],
+          "first_hit@0.3": 2,
+          "first_hit@0.5": null,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "aff3199d-50b3-54f2-9c48-8978ed3362b6",
+          "query": "early days of sharding at facebook and livejournal",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 170000,
+              "end_ms": 190000,
+              "score": 0.2857143
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 660000,
+              "end_ms": 680000,
+              "score": 0.16666667
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 280000,
+              "end_ms": 300000,
+              "score": 0.16666667
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.7092198581560284,
+            "start_err_s": 6.6,
+            "end_err_s": 1.6,
+            "excess_s": 0.0
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "b3c00d10-dad2-5703-b3c0-9ae94780fa89",
+          "query": "proxy layer like vitess in front of the database",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 40000,
+              "end_ms": 60000,
+              "score": 0.33333334
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 190000,
+              "end_ms": 210000,
+              "score": 0.33333334
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 260000,
+              "end_ms": 280000,
+              "score": 0.33333334
+            }
+          ],
+          "first_hit@0.3": 2,
+          "first_hit@0.5": 2,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "c916b753-2f36-568e-9ec4-4254688dd38d",
+          "query": "poll on how large a database can be hosted on a single node",
+          "type": "ocr",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 40000,
+              "end_ms": 60000,
+              "score": 0.4117647
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 100000,
+              "end_ms": 120000,
+              "score": 0.375
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 70000,
+              "end_ms": 90000,
+              "score": 0.2857143
+            }
+          ],
+          "first_hit@0.3": null,
+          "first_hit@0.5": null,
+          "candidate_recall@0.3": false,
+          "candidate_overlap": false,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "e5b58b10-d029-5da6-a13c-9e4b3cc0664a",
+          "query": "why application developers shouldn't build their own sharding",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 150000,
+              "end_ms": 170000,
+              "score": 0.23076923
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 280000,
+              "end_ms": 300000,
+              "score": 0.23076923
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 660000,
+              "end_ms": 680000,
+              "score": 0.16666667
+            }
+          ],
+          "first_hit@0.3": 2,
+          "first_hit@0.5": 2,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        }
+      ]
+    },
+    "B": {
+      "label": "Transcript semantic search",
+      "overall": {
+        "n_answerable": 9,
+        "n_no_answer": 2,
+        "success@1_iou0.3": 0.6667,
+        "hits@1_iou0.3": 6,
+        "success@5_iou0.3": 0.8889,
+        "hits@5_iou0.3": 8,
+        "success@10_iou0.3": 1.0,
+        "hits@10_iou0.3": 9,
+        "mrr_iou0.3": 0.7611,
+        "success@1_iou0.5": 0.6667,
+        "hits@1_iou0.5": 6,
+        "success@5_iou0.5": 0.8889,
+        "hits@5_iou0.5": 8,
+        "success@10_iou0.5": 1.0,
+        "hits@10_iou0.5": 9,
+        "mrr_iou0.5": 0.7611,
+        "candidate_recall_iou0.3": 1.0,
+        "localization_top1_when_overlapping": {
+          "n": 6,
+          "mean_iou": 0.75,
+          "mean_start_err_s": 5.07,
+          "mean_end_err_s": 1.07,
+          "mean_excess_s": 2.52
+        },
+        "end_to_end_top1_mean_iou": 0.5,
+        "success@5_iou0.3_ci95_grouped": null,
+        "no_answer_false_positive_rate": 1.0,
+        "no_answer_note": "this arm has no abstention threshold, so it always returns results"
+      },
+      "by_query_type": {
+        "mixed": {
+          "n_answerable": 1,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.0,
+          "hits@1_iou0.3": 0,
+          "success@5_iou0.3": 1.0,
+          "hits@5_iou0.3": 1,
+          "success@10_iou0.3": 1.0,
+          "hits@10_iou0.3": 1,
+          "mrr_iou0.3": 0.5,
+          "success@1_iou0.5": 0.0,
+          "hits@1_iou0.5": 0,
+          "success@5_iou0.5": 1.0,
+          "hits@5_iou0.5": 1,
+          "success@10_iou0.5": 1.0,
+          "hits@10_iou0.5": 1,
+          "mrr_iou0.5": 0.5,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 0,
+            "mean_iou": null,
+            "mean_start_err_s": null,
+            "mean_end_err_s": null,
+            "mean_excess_s": null
+          },
+          "end_to_end_top1_mean_iou": 0.0,
+          "success@5_iou0.3_ci95_grouped": null
+        },
+        "no_answer": {
+          "n_answerable": 0,
+          "n_no_answer": 2,
+          "no_answer_false_positive_rate": 1.0,
+          "no_answer_note": "this arm has no abstention threshold, so it always returns results"
+        },
+        "ocr": {
+          "n_answerable": 2,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.5,
+          "hits@1_iou0.3": 1,
+          "success@5_iou0.3": 0.5,
+          "hits@5_iou0.3": 1,
+          "success@10_iou0.3": 1.0,
+          "hits@10_iou0.3": 2,
+          "mrr_iou0.3": 0.55,
+          "success@1_iou0.5": 0.5,
+          "hits@1_iou0.5": 1,
+          "success@5_iou0.5": 0.5,
+          "hits@5_iou0.5": 1,
+          "success@10_iou0.5": 1.0,
+          "hits@10_iou0.5": 2,
+          "mrr_iou0.5": 0.55,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 1,
+            "mean_iou": 0.873,
+            "mean_start_err_s": 2.5,
+            "mean_end_err_s": 0.05,
+            "mean_excess_s": 2.55
+          },
+          "end_to_end_top1_mean_iou": 0.436,
+          "success@5_iou0.3_ci95_grouped": null
+        },
+        "speech": {
+          "n_answerable": 6,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.8333,
+          "hits@1_iou0.3": 5,
+          "success@5_iou0.3": 1.0,
+          "hits@5_iou0.3": 6,
+          "success@10_iou0.3": 1.0,
+          "hits@10_iou0.3": 6,
+          "mrr_iou0.3": 0.875,
+          "success@1_iou0.5": 0.8333,
+          "hits@1_iou0.5": 5,
+          "success@5_iou0.5": 1.0,
+          "hits@5_iou0.5": 6,
+          "success@10_iou0.5": 1.0,
+          "hits@10_iou0.5": 6,
+          "mrr_iou0.5": 0.875,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 5,
+            "mean_iou": 0.725,
+            "mean_start_err_s": 5.58,
+            "mean_end_err_s": 1.28,
+            "mean_excess_s": 2.52
+          },
+          "end_to_end_top1_mean_iou": 0.604,
+          "success@5_iou0.3_ci95_grouped": null
+        }
+      },
+      "by_content_type": {
+        "none": {
+          "n_answerable": 0,
+          "n_no_answer": 2,
+          "no_answer_false_positive_rate": 1.0,
+          "no_answer_note": "this arm has no abstention threshold, so it always returns results"
+        },
+        "talk": {
+          "n_answerable": 9,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.6667,
+          "hits@1_iou0.3": 6,
+          "success@5_iou0.3": 0.8889,
+          "hits@5_iou0.3": 8,
+          "success@10_iou0.3": 1.0,
+          "hits@10_iou0.3": 9,
+          "mrr_iou0.3": 0.7611,
+          "success@1_iou0.5": 0.6667,
+          "hits@1_iou0.5": 6,
+          "success@5_iou0.5": 0.8889,
+          "hits@5_iou0.5": 8,
+          "success@10_iou0.5": 1.0,
+          "hits@10_iou0.5": 9,
+          "mrr_iou0.5": 0.7611,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 6,
+            "mean_iou": 0.75,
+            "mean_start_err_s": 5.07,
+            "mean_end_err_s": 1.07,
+            "mean_excess_s": 2.52
+          },
+          "end_to_end_top1_mean_iou": 0.5,
+          "success@5_iou0.3_ci95_grouped": null
+        }
+      },
+      "per_query": [
+        {
+          "id": "17881369-a879-515c-96f9-0dc980a87810",
+          "query": "biggest aws instance you can rent, how many cores and how much memory",
+          "type": "mixed",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 440000,
+              "end_ms": 460000,
+              "score": 0.7151935270313319
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 460000,
+              "end_ms": 480000,
+              "score": 0.5392676270444625
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 570000,
+              "end_ms": 590000,
+              "score": 0.4617927395228907
+            }
+          ],
+          "first_hit@0.3": 2,
+          "first_hit@0.5": 2,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "21a9799c-0204-5c0f-b1cf-591c95784ead",
+          "query": "even a fully managed distributed database doesn't hide its failure modes",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 290000,
+              "end_ms": 310000,
+              "score": 0.4675486126484174
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 30000,
+              "end_ms": 50000,
+              "score": 0.4483402731013004
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 50000,
+              "end_ms": 70000,
+              "score": 0.41207550024086526
+            }
+          ],
+          "first_hit@0.3": 4,
+          "first_hit@0.5": 4,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "2c820b98-0534-5041-87ca-4be88166aae1",
+          "query": "people running 100 terabyte postgres instances on one server",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 400000,
+              "end_ms": 420000,
+              "score": 0.7369689188581073
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 140000,
+              "end_ms": 160000,
+              "score": 0.4366177060235922
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 50000,
+              "end_ms": 70000,
+              "score": 0.3901727795600891
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.8737864077669902,
+            "start_err_s": 2.0,
+            "end_err_s": 0.6,
+            "excess_s": 2.0
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "3d3f4e1d-5bff-5dae-acce-0f7a1d838346",
+          "query": "chocolate chip cookie recipe",
+          "type": "no_answer",
+          "groups": [
+            "no-answer:3d3f4e1d"
+          ],
+          "top": [
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 700000,
+              "end_ms": 720000,
+              "score": 0.1918248007506369
+            },
+            {
+              "video_id": "5e396b81-1755-4b2d-aeef-5b7139872ce6",
+              "video_title": "rash: asynchronous shell - live demo (excerpt)",
+              "start_ms": 100000,
+              "end_ms": 120000,
+              "score": 0.12201402354156854
+            },
+            {
+              "video_id": "5e396b81-1755-4b2d-aeef-5b7139872ce6",
+              "video_title": "rash: asynchronous shell - live demo (excerpt)",
+              "start_ms": 60000,
+              "end_ms": 80000,
+              "score": 0.09447081005921243
+            }
+          ],
+          "top_score": 0.1918248007506369,
+          "content_type": "none"
+        },
+        {
+          "id": "4dd33f2a-007a-5e07-b2a8-467a56c08a42",
+          "query": "raft leader election",
+          "type": "no_answer",
+          "groups": [
+            "no-answer:4dd33f2a"
+          ],
+          "top": [
+            {
+              "video_id": "5e396b81-1755-4b2d-aeef-5b7139872ce6",
+              "video_title": "rash: asynchronous shell - live demo (excerpt)",
+              "start_ms": 90000,
+              "end_ms": 110000,
+              "score": 0.15655917486195747
+            },
+            {
+              "video_id": "5e396b81-1755-4b2d-aeef-5b7139872ce6",
+              "video_title": "rash: asynchronous shell - live demo (excerpt)",
+              "start_ms": 200000,
+              "end_ms": 220000,
+              "score": 0.13358273305995882
+            },
+            {
+              "video_id": "5e396b81-1755-4b2d-aeef-5b7139872ce6",
+              "video_title": "rash: asynchronous shell - live demo (excerpt)",
+              "start_ms": 70000,
+              "end_ms": 90000,
+              "score": 0.12262859209605526
+            }
+          ],
+          "top_score": 0.15655917486195747,
+          "content_type": "none"
+        },
+        {
+          "id": "6a83bde9-80d0-54de-bca2-51902fcf8ca0",
+          "query": "u7inh-32tb.480xlarge",
+          "type": "ocr",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 460000,
+              "end_ms": 480000,
+              "score": 0.2408807873725891
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 440000,
+              "end_ms": 460000,
+              "score": 0.23416182398796082
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 450000,
+              "end_ms": 470000,
+              "score": 0.20717480778694153
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.8725,
+            "start_err_s": 2.5,
+            "end_err_s": 0.05,
+            "excess_s": 2.55
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "6d0eb938-fc5b-5d1d-85b1-e52ef978c38d",
+          "query": "what makes a database distributed instead of a single node with replicas",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 110000,
+              "end_ms": 130000,
+              "score": 0.6735925272946055
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 50000,
+              "end_ms": 70000,
+              "score": 0.6547832489013672
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 70000,
+              "end_ms": 90000,
+              "score": 0.6390035963652386
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.8789237668161435,
+            "start_err_s": 2.3,
+            "end_err_s": 0.4,
+            "excess_s": 0.4
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "aff3199d-50b3-54f2-9c48-8978ed3362b6",
+          "query": "early days of sharding at facebook and livejournal",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 170000,
+              "end_ms": 190000,
+              "score": 0.6778397944164521
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 130000,
+              "end_ms": 150000,
+              "score": 0.37544016534803326
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 280000,
+              "end_ms": 300000,
+              "score": 0.3421644066474201
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.7092198581560284,
+            "start_err_s": 6.6,
+            "end_err_s": 1.6,
+            "excess_s": 0.0
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "b3c00d10-dad2-5703-b3c0-9ae94780fa89",
+          "query": "proxy layer like vitess in front of the database",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 200000,
+              "end_ms": 220000,
+              "score": 0.6069464683532715
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 180000,
+              "end_ms": 200000,
+              "score": 0.45532530546188354
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 270000,
+              "end_ms": 290000,
+              "score": 0.4543640342733848
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.6363636363636364,
+            "start_err_s": 8.6,
+            "end_err_s": 1.8,
+            "excess_s": 1.8
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "c916b753-2f36-568e-9ec4-4254688dd38d",
+          "query": "poll on how large a database can be hosted on a single node",
+          "type": "ocr",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 80000,
+              "end_ms": 100000,
+              "score": 0.6034084558486938
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 50000,
+              "end_ms": 70000,
+              "score": 0.5675493478775024
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 130000,
+              "end_ms": 150000,
+              "score": 0.5537323025624582
+            }
+          ],
+          "first_hit@0.3": 10,
+          "first_hit@0.5": 10,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "e5b58b10-d029-5da6-a13c-9e4b3cc0664a",
+          "query": "why application developers shouldn't build their own sharding",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 280000,
+              "end_ms": 300000,
+              "score": 0.5295639914534106
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 180000,
+              "end_ms": 200000,
+              "score": 0.5026039777634166
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 230000,
+              "end_ms": 250000,
+              "score": 0.4959394040143854
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.5272727272727272,
+            "start_err_s": 8.4,
+            "end_err_s": 2.0,
+            "excess_s": 8.4
+          },
+          "content_type": "talk"
+        }
+      ]
+    },
+    "C": {
+      "label": "Transcript + on-screen text (fixed fusion)",
+      "overall": {
+        "n_answerable": 9,
+        "n_no_answer": 2,
+        "success@1_iou0.3": 0.5556,
+        "hits@1_iou0.3": 5,
+        "success@5_iou0.3": 0.8889,
+        "hits@5_iou0.3": 8,
+        "success@10_iou0.3": 0.8889,
+        "hits@10_iou0.3": 8,
+        "mrr_iou0.3": 0.6852,
+        "success@1_iou0.5": 0.5556,
+        "hits@1_iou0.5": 5,
+        "success@5_iou0.5": 0.7778,
+        "hits@5_iou0.5": 7,
+        "success@10_iou0.5": 0.7778,
+        "hits@10_iou0.5": 7,
+        "mrr_iou0.5": 0.6481,
+        "candidate_recall_iou0.3": 1.0,
+        "localization_top1_when_overlapping": {
+          "n": 6,
+          "mean_iou": 0.636,
+          "mean_start_err_s": 4.08,
+          "mean_end_err_s": 5.67,
+          "mean_excess_s": 4.04
+        },
+        "end_to_end_top1_mean_iou": 0.424,
+        "success@5_iou0.3_ci95_grouped": null,
+        "no_answer_false_positive_rate": 1.0,
+        "no_answer_note": "this arm has no abstention threshold, so it always returns results"
+      },
+      "by_query_type": {
+        "mixed": {
+          "n_answerable": 1,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.0,
+          "hits@1_iou0.3": 0,
+          "success@5_iou0.3": 0.0,
+          "hits@5_iou0.3": 0,
+          "success@10_iou0.3": 0.0,
+          "hits@10_iou0.3": 0,
+          "mrr_iou0.3": 0.0,
+          "success@1_iou0.5": 0.0,
+          "hits@1_iou0.5": 0,
+          "success@5_iou0.5": 0.0,
+          "hits@5_iou0.5": 0,
+          "success@10_iou0.5": 0.0,
+          "hits@10_iou0.5": 0,
+          "mrr_iou0.5": 0.0,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 1,
+            "mean_iou": 0.257,
+            "mean_start_err_s": 12.3,
+            "mean_end_err_s": 9.95,
+            "mean_excess_s": 12.3
+          },
+          "end_to_end_top1_mean_iou": 0.257,
+          "success@5_iou0.3_ci95_grouped": null
+        },
+        "no_answer": {
+          "n_answerable": 0,
+          "n_no_answer": 2,
+          "no_answer_false_positive_rate": 1.0,
+          "no_answer_note": "this arm has no abstention threshold, so it always returns results"
+        },
+        "ocr": {
+          "n_answerable": 2,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.5,
+          "hits@1_iou0.3": 1,
+          "success@5_iou0.3": 1.0,
+          "hits@5_iou0.3": 2,
+          "success@10_iou0.3": 1.0,
+          "hits@10_iou0.3": 2,
+          "mrr_iou0.3": 0.6667,
+          "success@1_iou0.5": 0.5,
+          "hits@1_iou0.5": 1,
+          "success@5_iou0.5": 1.0,
+          "hits@5_iou0.5": 2,
+          "success@10_iou0.5": 1.0,
+          "hits@10_iou0.5": 2,
+          "mrr_iou0.5": 0.6667,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 1,
+            "mean_iou": 0.873,
+            "mean_start_err_s": 2.5,
+            "mean_end_err_s": 0.05,
+            "mean_excess_s": 2.55
+          },
+          "end_to_end_top1_mean_iou": 0.436,
+          "success@5_iou0.3_ci95_grouped": null
+        },
+        "speech": {
+          "n_answerable": 6,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.6667,
+          "hits@1_iou0.3": 4,
+          "success@5_iou0.3": 1.0,
+          "hits@5_iou0.3": 6,
+          "success@10_iou0.3": 1.0,
+          "hits@10_iou0.3": 6,
+          "mrr_iou0.3": 0.8056,
+          "success@1_iou0.5": 0.6667,
+          "hits@1_iou0.5": 4,
+          "success@5_iou0.5": 0.8333,
+          "hits@5_iou0.5": 5,
+          "success@10_iou0.5": 0.8333,
+          "hits@10_iou0.5": 5,
+          "mrr_iou0.5": 0.75,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 4,
+            "mean_iou": 0.671,
+            "mean_start_err_s": 2.42,
+            "mean_end_err_s": 6.0,
+            "mean_excess_s": 2.35
+          },
+          "end_to_end_top1_mean_iou": 0.447,
+          "success@5_iou0.3_ci95_grouped": null
+        }
+      },
+      "by_content_type": {
+        "none": {
+          "n_answerable": 0,
+          "n_no_answer": 2,
+          "no_answer_false_positive_rate": 1.0,
+          "no_answer_note": "this arm has no abstention threshold, so it always returns results"
+        },
+        "talk": {
+          "n_answerable": 9,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.5556,
+          "hits@1_iou0.3": 5,
+          "success@5_iou0.3": 0.8889,
+          "hits@5_iou0.3": 8,
+          "success@10_iou0.3": 0.8889,
+          "hits@10_iou0.3": 8,
+          "mrr_iou0.3": 0.6852,
+          "success@1_iou0.5": 0.5556,
+          "hits@1_iou0.5": 5,
+          "success@5_iou0.5": 0.7778,
+          "hits@5_iou0.5": 7,
+          "success@10_iou0.5": 0.7778,
+          "hits@10_iou0.5": 7,
+          "mrr_iou0.5": 0.6481,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 6,
+            "mean_iou": 0.636,
+            "mean_start_err_s": 4.08,
+            "mean_end_err_s": 5.67,
+            "mean_excess_s": 4.04
+          },
+          "end_to_end_top1_mean_iou": 0.424,
+          "success@5_iou0.3_ci95_grouped": null
+        }
+      },
+      "per_query": [
+        {
+          "id": "17881369-a879-515c-96f9-0dc980a87810",
+          "query": "biggest aws instance you can rent, how many cores and how much memory",
+          "type": "mixed",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 450000,
+              "end_ms": 470000,
+              "score": 0.06427650713907986
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 570000,
+              "end_ms": 590000,
+              "score": 0.0541966893865628
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 430000,
+              "end_ms": 450000,
+              "score": 0.04570188828584351
+            }
+          ],
+          "first_hit@0.3": null,
+          "first_hit@0.5": null,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.2570951585976628,
+            "start_err_s": 12.3,
+            "end_err_s": 9.95,
+            "excess_s": 12.3
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "21a9799c-0204-5c0f-b1cf-591c95784ead",
+          "query": "even a fully managed distributed database doesn't hide its failure modes",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 330000,
+              "end_ms": 350000,
+              "score": 0.06088888674490079
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 350000,
+              "end_ms": 370000,
+              "score": 0.059088456427846436
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 290000,
+              "end_ms": 310000,
+              "score": 0.05887089608601004
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.7604562737642585,
+            "start_err_s": 0.1,
+            "end_err_s": 6.2,
+            "excess_s": 0.0
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "2c820b98-0534-5041-87ca-4be88166aae1",
+          "query": "people running 100 terabyte postgres instances on one server",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 120000,
+              "end_ms": 140000,
+              "score": 0.053125764912958284
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 400000,
+              "end_ms": 420000,
+              "score": 0.04771225838023
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 140000,
+              "end_ms": 160000,
+              "score": 0.042919799498746865
+            }
+          ],
+          "first_hit@0.3": 2,
+          "first_hit@0.5": 2,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "3d3f4e1d-5bff-5dae-acce-0f7a1d838346",
+          "query": "chocolate chip cookie recipe",
+          "type": "no_answer",
+          "groups": [
+            "no-answer:3d3f4e1d"
+          ],
+          "top": [
+            {
+              "video_id": "5e396b81-1755-4b2d-aeef-5b7139872ce6",
+              "video_title": "rash: asynchronous shell - live demo (excerpt)",
+              "start_ms": 100000,
+              "end_ms": 120000,
+              "score": 0.0315136476426799
+            },
+            {
+              "video_id": "5e396b81-1755-4b2d-aeef-5b7139872ce6",
+              "video_title": "rash: asynchronous shell - live demo (excerpt)",
+              "start_ms": 60000,
+              "end_ms": 80000,
+              "score": 0.03036576949620428
+            },
+            {
+              "video_id": "b8938456-216d-417a-9b6d-99b2181ab812",
+              "video_title": "STEMonstrations: Simple Machines",
+              "start_ms": 200000,
+              "end_ms": 220000,
+              "score": 0.02803921568627451
+            }
+          ],
+          "top_score": 0.0315136476426799,
+          "content_type": "none"
+        },
+        {
+          "id": "4dd33f2a-007a-5e07-b2a8-467a56c08a42",
+          "query": "raft leader election",
+          "type": "no_answer",
+          "groups": [
+            "no-answer:4dd33f2a"
+          ],
+          "top": [
+            {
+              "video_id": "5e396b81-1755-4b2d-aeef-5b7139872ce6",
+              "video_title": "rash: asynchronous shell - live demo (excerpt)",
+              "start_ms": 120000,
+              "end_ms": 140000,
+              "score": 0.0315136476426799
+            },
+            {
+              "video_id": "5e396b81-1755-4b2d-aeef-5b7139872ce6",
+              "video_title": "rash: asynchronous shell - live demo (excerpt)",
+              "start_ms": 160000,
+              "end_ms": 180000,
+              "score": 0.02967032967032967
+            },
+            {
+              "video_id": "5e396b81-1755-4b2d-aeef-5b7139872ce6",
+              "video_title": "rash: asynchronous shell - live demo (excerpt)",
+              "start_ms": 70000,
+              "end_ms": 90000,
+              "score": 0.0293236301369863
+            }
+          ],
+          "top_score": 0.0315136476426799,
+          "content_type": "none"
+        },
+        {
+          "id": "6a83bde9-80d0-54de-bca2-51902fcf8ca0",
+          "query": "u7inh-32tb.480xlarge",
+          "type": "ocr",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 460000,
+              "end_ms": 480000,
+              "score": 0.048651507139079855
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 440000,
+              "end_ms": 460000,
+              "score": 0.0315136476426799
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 400000,
+              "end_ms": 420000,
+              "score": 0.03007688828584351
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.8725,
+            "start_err_s": 2.5,
+            "end_err_s": 0.05,
+            "excess_s": 2.55
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "6d0eb938-fc5b-5d1d-85b1-e52ef978c38d",
+          "query": "what makes a database distributed instead of a single node with replicas",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 60000,
+              "end_ms": 80000,
+              "score": 0.06118922654916953
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 120000,
+              "end_ms": 140000,
+              "score": 0.05981727369384072
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 100000,
+              "end_ms": 120000,
+              "score": 0.05894594009053695
+            }
+          ],
+          "first_hit@0.3": 3,
+          "first_hit@0.5": null,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "aff3199d-50b3-54f2-9c48-8978ed3362b6",
+          "query": "early days of sharding at facebook and livejournal",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 170000,
+              "end_ms": 190000,
+              "score": 0.06333725838023
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 120000,
+              "end_ms": 140000,
+              "score": 0.05968505989950715
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 280000,
+              "end_ms": 300000,
+              "score": 0.05674325674325675
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.7092198581560284,
+            "start_err_s": 6.6,
+            "end_err_s": 1.6,
+            "excess_s": 0.0
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "b3c00d10-dad2-5703-b3c0-9ae94780fa89",
+          "query": "proxy layer like vitess in front of the database",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 190000,
+              "end_ms": 210000,
+              "score": 0.05894370764012832
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 40000,
+              "end_ms": 60000,
+              "score": 0.05761947518402831
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 70000,
+              "end_ms": 90000,
+              "score": 0.04459570280465803
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.6595744680851063,
+            "start_err_s": 1.4,
+            "end_err_s": 8.2,
+            "excess_s": 1.4
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "c916b753-2f36-568e-9ec4-4254688dd38d",
+          "query": "poll on how large a database can be hosted on a single node",
+          "type": "ocr",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 130000,
+              "end_ms": 150000,
+              "score": 0.05650108589718854
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 70000,
+              "end_ms": 90000,
+              "score": 0.054385973503620566
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 400000,
+              "end_ms": 420000,
+              "score": 0.04508697131647951
+            }
+          ],
+          "first_hit@0.3": 3,
+          "first_hit@0.5": 3,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "e5b58b10-d029-5da6-a13c-9e4b3cc0664a",
+          "query": "why application developers shouldn't build their own sharding",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 290000,
+              "end_ms": 310000,
+              "score": 0.062379872385471664
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 250000,
+              "end_ms": 270000,
+              "score": 0.059934285790299836
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 220000,
+              "end_ms": 240000,
+              "score": 0.05962301587301587
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.5555555555555556,
+            "start_err_s": 1.6,
+            "end_err_s": 8.0,
+            "excess_s": 8.0
+          },
+          "content_type": "talk"
+        }
+      ]
+    },
+    "D": {
+      "label": "Visual only (CLIP)",
+      "overall": {
+        "n_answerable": 9,
+        "n_no_answer": 2,
+        "success@1_iou0.3": 0.2222,
+        "hits@1_iou0.3": 2,
+        "success@5_iou0.3": 0.4444,
+        "hits@5_iou0.3": 4,
+        "success@10_iou0.3": 0.6667,
+        "hits@10_iou0.3": 6,
+        "mrr_iou0.3": 0.3317,
+        "success@1_iou0.5": 0.2222,
+        "hits@1_iou0.5": 2,
+        "success@5_iou0.5": 0.3333,
+        "hits@5_iou0.5": 3,
+        "success@10_iou0.5": 0.5556,
+        "hits@10_iou0.5": 5,
+        "mrr_iou0.5": 0.2762,
+        "candidate_recall_iou0.3": 0.6667,
+        "localization_top1_when_overlapping": {
+          "n": 2,
+          "mean_iou": 0.714,
+          "mean_start_err_s": 2.05,
+          "mean_end_err_s": 4.03,
+          "mean_excess_s": 5.28
+        },
+        "end_to_end_top1_mean_iou": 0.159,
+        "success@5_iou0.3_ci95_grouped": null,
+        "no_answer_false_positive_rate": 1.0,
+        "no_answer_note": "this arm has no abstention threshold, so it always returns results"
+      },
+      "by_query_type": {
+        "mixed": {
+          "n_answerable": 1,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.0,
+          "hits@1_iou0.3": 0,
+          "success@5_iou0.3": 0.0,
+          "hits@5_iou0.3": 0,
+          "success@10_iou0.3": 1.0,
+          "hits@10_iou0.3": 1,
+          "mrr_iou0.3": 0.1429,
+          "success@1_iou0.5": 0.0,
+          "hits@1_iou0.5": 0,
+          "success@5_iou0.5": 0.0,
+          "hits@5_iou0.5": 0,
+          "success@10_iou0.5": 1.0,
+          "hits@10_iou0.5": 1,
+          "mrr_iou0.5": 0.1429,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 0,
+            "mean_iou": null,
+            "mean_start_err_s": null,
+            "mean_end_err_s": null,
+            "mean_excess_s": null
+          },
+          "end_to_end_top1_mean_iou": 0.0,
+          "success@5_iou0.3_ci95_grouped": null
+        },
+        "no_answer": {
+          "n_answerable": 0,
+          "n_no_answer": 2,
+          "no_answer_false_positive_rate": 1.0,
+          "no_answer_note": "this arm has no abstention threshold, so it always returns results"
+        },
+        "ocr": {
+          "n_answerable": 2,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.5,
+          "hits@1_iou0.3": 1,
+          "success@5_iou0.3": 0.5,
+          "hits@5_iou0.3": 1,
+          "success@10_iou0.3": 1.0,
+          "hits@10_iou0.3": 2,
+          "mrr_iou0.3": 0.5714,
+          "success@1_iou0.5": 0.5,
+          "hits@1_iou0.5": 1,
+          "success@5_iou0.5": 0.5,
+          "hits@5_iou0.5": 1,
+          "success@10_iou0.5": 1.0,
+          "hits@10_iou0.5": 2,
+          "mrr_iou0.5": 0.5714,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 1,
+            "mean_iou": 0.873,
+            "mean_start_err_s": 2.5,
+            "mean_end_err_s": 0.05,
+            "mean_excess_s": 2.55
+          },
+          "end_to_end_top1_mean_iou": 0.436,
+          "success@5_iou0.3_ci95_grouped": null
+        },
+        "speech": {
+          "n_answerable": 6,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.1667,
+          "hits@1_iou0.3": 1,
+          "success@5_iou0.3": 0.5,
+          "hits@5_iou0.3": 3,
+          "success@10_iou0.3": 0.5,
+          "hits@10_iou0.3": 3,
+          "mrr_iou0.3": 0.2833,
+          "success@1_iou0.5": 0.1667,
+          "hits@1_iou0.5": 1,
+          "success@5_iou0.5": 0.3333,
+          "hits@5_iou0.5": 2,
+          "success@10_iou0.5": 0.3333,
+          "hits@10_iou0.5": 2,
+          "mrr_iou0.5": 0.2,
+          "candidate_recall_iou0.3": 0.5,
+          "localization_top1_when_overlapping": {
+            "n": 1,
+            "mean_iou": 0.556,
+            "mean_start_err_s": 1.6,
+            "mean_end_err_s": 8.0,
+            "mean_excess_s": 8.0
+          },
+          "end_to_end_top1_mean_iou": 0.093,
+          "success@5_iou0.3_ci95_grouped": null
+        }
+      },
+      "by_content_type": {
+        "none": {
+          "n_answerable": 0,
+          "n_no_answer": 2,
+          "no_answer_false_positive_rate": 1.0,
+          "no_answer_note": "this arm has no abstention threshold, so it always returns results"
+        },
+        "talk": {
+          "n_answerable": 9,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.2222,
+          "hits@1_iou0.3": 2,
+          "success@5_iou0.3": 0.4444,
+          "hits@5_iou0.3": 4,
+          "success@10_iou0.3": 0.6667,
+          "hits@10_iou0.3": 6,
+          "mrr_iou0.3": 0.3317,
+          "success@1_iou0.5": 0.2222,
+          "hits@1_iou0.5": 2,
+          "success@5_iou0.5": 0.3333,
+          "hits@5_iou0.5": 3,
+          "success@10_iou0.5": 0.5556,
+          "hits@10_iou0.5": 5,
+          "mrr_iou0.5": 0.2762,
+          "candidate_recall_iou0.3": 0.6667,
+          "localization_top1_when_overlapping": {
+            "n": 2,
+            "mean_iou": 0.714,
+            "mean_start_err_s": 2.05,
+            "mean_end_err_s": 4.03,
+            "mean_excess_s": 5.28
+          },
+          "end_to_end_top1_mean_iou": 0.159,
+          "success@5_iou0.3_ci95_grouped": null
+        }
+      },
+      "per_query": [
+        {
+          "id": "17881369-a879-515c-96f9-0dc980a87810",
+          "query": "biggest aws instance you can rent, how many cores and how much memory",
+          "type": "mixed",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 570000,
+              "end_ms": 590000,
+              "score": 0.25766423435976915
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 550000,
+              "end_ms": 570000,
+              "score": 0.2573146828788141
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 590000,
+              "end_ms": 610000,
+              "score": 0.2570166289806384
+            }
+          ],
+          "first_hit@0.3": 7,
+          "first_hit@0.5": 7,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "21a9799c-0204-5c0f-b1cf-591c95784ead",
+          "query": "even a fully managed distributed database doesn't hide its failure modes",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 0,
+              "end_ms": 20000,
+              "score": 0.3122097179639698
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 210000,
+              "end_ms": 230000,
+              "score": 0.30976683112083747
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 230000,
+              "end_ms": 250000,
+              "score": 0.30810513399778416
+            }
+          ],
+          "first_hit@0.3": null,
+          "first_hit@0.5": null,
+          "candidate_recall@0.3": false,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "2c820b98-0534-5041-87ca-4be88166aae1",
+          "query": "people running 100 terabyte postgres instances on one server",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 420000,
+              "end_ms": 440000,
+              "score": 0.22697354715904916
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 440000,
+              "end_ms": 460000,
+              "score": 0.22647584159600276
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 540000,
+              "end_ms": 560000,
+              "score": 0.22259296150123775
+            }
+          ],
+          "first_hit@0.3": null,
+          "first_hit@0.5": null,
+          "candidate_recall@0.3": false,
+          "candidate_overlap": false,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "3d3f4e1d-5bff-5dae-acce-0f7a1d838346",
+          "query": "chocolate chip cookie recipe",
+          "type": "no_answer",
+          "groups": [
+            "no-answer:3d3f4e1d"
+          ],
+          "top": [
+            {
+              "video_id": "b8938456-216d-417a-9b6d-99b2181ab812",
+              "video_title": "STEMonstrations: Simple Machines",
+              "start_ms": 0,
+              "end_ms": 20000,
+              "score": 0.20105854583484617
+            },
+            {
+              "video_id": "32324646-2419-46af-8b4b-51441e21efc4",
+              "video_title": "STEMonstrations: Friction",
+              "start_ms": 0,
+              "end_ms": 20000,
+              "score": 0.20105854583484617
+            },
+            {
+              "video_id": "b8938456-216d-417a-9b6d-99b2181ab812",
+              "video_title": "STEMonstrations: Simple Machines",
+              "start_ms": 200000,
+              "end_ms": 220000,
+              "score": 0.19520398321199361
+            }
+          ],
+          "top_score": 0.20105854583484617,
+          "content_type": "none"
+        },
+        {
+          "id": "4dd33f2a-007a-5e07-b2a8-467a56c08a42",
+          "query": "raft leader election",
+          "type": "no_answer",
+          "groups": [
+            "no-answer:4dd33f2a"
+          ],
+          "top": [
+            {
+              "video_id": "b8938456-216d-417a-9b6d-99b2181ab812",
+              "video_title": "STEMonstrations: Simple Machines",
+              "start_ms": 200000,
+              "end_ms": 220000,
+              "score": 0.21197090816324438
+            },
+            {
+              "video_id": "32324646-2419-46af-8b4b-51441e21efc4",
+              "video_title": "STEMonstrations: Friction",
+              "start_ms": 60000,
+              "end_ms": 80000,
+              "score": 0.20567069683496375
+            },
+            {
+              "video_id": "b8938456-216d-417a-9b6d-99b2181ab812",
+              "video_title": "STEMonstrations: Simple Machines",
+              "start_ms": 110000,
+              "end_ms": 130000,
+              "score": 0.18894889586859354
+            }
+          ],
+          "top_score": 0.21197090816324438,
+          "content_type": "none"
+        },
+        {
+          "id": "6a83bde9-80d0-54de-bca2-51902fcf8ca0",
+          "query": "u7inh-32tb.480xlarge",
+          "type": "ocr",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 460000,
+              "end_ms": 480000,
+              "score": 0.2511117829878552
+            },
+            {
+              "video_id": "8fa27dc7-c803-4ce6-aa58-64202505da99",
+              "video_title": "OwnTech power electronics - hardware demo (excerpt)",
+              "start_ms": 80000,
+              "end_ms": 100000,
+              "score": 0.22926001497983917
+            },
+            {
+              "video_id": "8fa27dc7-c803-4ce6-aa58-64202505da99",
+              "video_title": "OwnTech power electronics - hardware demo (excerpt)",
+              "start_ms": 100000,
+              "end_ms": 120000,
+              "score": 0.22619598039460576
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.8725,
+            "start_err_s": 2.5,
+            "end_err_s": 0.05,
+            "excess_s": 2.55
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "6d0eb938-fc5b-5d1d-85b1-e52ef978c38d",
+          "query": "what makes a database distributed instead of a single node with replicas",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 0,
+              "end_ms": 20000,
+              "score": 0.30243039407458694
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 120000,
+              "end_ms": 140000,
+              "score": 0.28862882520642374
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 140000,
+              "end_ms": 160000,
+              "score": 0.28776399158728116
+            }
+          ],
+          "first_hit@0.3": null,
+          "first_hit@0.5": null,
+          "candidate_recall@0.3": false,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "aff3199d-50b3-54f2-9c48-8978ed3362b6",
+          "query": "early days of sharding at facebook and livejournal",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 130000,
+              "end_ms": 150000,
+              "score": 0.28627783913248317
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 180000,
+              "end_ms": 200000,
+              "score": 0.2843701710921628
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 200000,
+              "end_ms": 220000,
+              "score": 0.28406485068604903
+            }
+          ],
+          "first_hit@0.3": 2,
+          "first_hit@0.5": null,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "b3c00d10-dad2-5703-b3c0-9ae94780fa89",
+          "query": "proxy layer like vitess in front of the database",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 50000,
+              "end_ms": 70000,
+              "score": 0.2839695642012623
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 0,
+              "end_ms": 20000,
+              "score": 0.2508972882154854
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 190000,
+              "end_ms": 210000,
+              "score": 0.2390114963054657
+            }
+          ],
+          "first_hit@0.3": 5,
+          "first_hit@0.5": 5,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "c916b753-2f36-568e-9ec4-4254688dd38d",
+          "query": "poll on how large a database can be hosted on a single node",
+          "type": "ocr",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 120000,
+              "end_ms": 140000,
+              "score": 0.32464035455699736
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 180000,
+              "end_ms": 200000,
+              "score": 0.32259643269841143
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 140000,
+              "end_ms": 160000,
+              "score": 0.32139885638972765
+            }
+          ],
+          "first_hit@0.3": 7,
+          "first_hit@0.5": 7,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "e5b58b10-d029-5da6-a13c-9e4b3cc0664a",
+          "query": "why application developers shouldn't build their own sharding",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 290000,
+              "end_ms": 310000,
+              "score": 0.2544337803800386
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 230000,
+              "end_ms": 250000,
+              "score": 0.25397325981141494
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 270000,
+              "end_ms": 290000,
+              "score": 0.25243476004186327
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.5555555555555556,
+            "start_err_s": 1.6,
+            "end_err_s": 8.0,
+            "excess_s": 8.0
+          },
+          "content_type": "talk"
+        }
+      ]
+    },
+    "E": {
+      "label": "All modalities, fixed rank fusion",
+      "overall": {
+        "n_answerable": 9,
+        "n_no_answer": 2,
+        "success@1_iou0.3": 0.4444,
+        "hits@1_iou0.3": 4,
+        "success@5_iou0.3": 0.6667,
+        "hits@5_iou0.3": 6,
+        "success@10_iou0.3": 0.8889,
+        "hits@10_iou0.3": 8,
+        "mrr_iou0.3": 0.5926,
+        "success@1_iou0.5": 0.4444,
+        "hits@1_iou0.5": 4,
+        "success@5_iou0.5": 0.6667,
+        "hits@5_iou0.5": 6,
+        "success@10_iou0.5": 0.7778,
+        "hits@10_iou0.5": 7,
+        "mrr_iou0.5": 0.5741,
+        "candidate_recall_iou0.3": 1.0,
+        "localization_top1_when_overlapping": {
+          "n": 6,
+          "mean_iou": 0.555,
+          "mean_start_err_s": 7.32,
+          "mean_end_err_s": 5.3,
+          "mean_excess_s": 5.84
+        },
+        "end_to_end_top1_mean_iou": 0.37,
+        "success@5_iou0.3_ci95_grouped": null,
+        "no_answer_false_positive_rate": 1.0,
+        "no_answer_note": "this arm has no abstention threshold, so it always returns results"
+      },
+      "by_query_type": {
+        "mixed": {
+          "n_answerable": 1,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.0,
+          "hits@1_iou0.3": 0,
+          "success@5_iou0.3": 0.0,
+          "hits@5_iou0.3": 0,
+          "success@10_iou0.3": 0.0,
+          "hits@10_iou0.3": 0,
+          "mrr_iou0.3": 0.0,
+          "success@1_iou0.5": 0.0,
+          "hits@1_iou0.5": 0,
+          "success@5_iou0.5": 0.0,
+          "hits@5_iou0.5": 0,
+          "success@10_iou0.5": 0.0,
+          "hits@10_iou0.5": 0,
+          "mrr_iou0.5": 0.0,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 1,
+            "mean_iou": 0.257,
+            "mean_start_err_s": 12.3,
+            "mean_end_err_s": 9.95,
+            "mean_excess_s": 12.3
+          },
+          "end_to_end_top1_mean_iou": 0.257,
+          "success@5_iou0.3_ci95_grouped": null
+        },
+        "no_answer": {
+          "n_answerable": 0,
+          "n_no_answer": 2,
+          "no_answer_false_positive_rate": 1.0,
+          "no_answer_note": "this arm has no abstention threshold, so it always returns results"
+        },
+        "ocr": {
+          "n_answerable": 2,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.5,
+          "hits@1_iou0.3": 1,
+          "success@5_iou0.3": 1.0,
+          "hits@5_iou0.3": 2,
+          "success@10_iou0.3": 1.0,
+          "hits@10_iou0.3": 2,
+          "mrr_iou0.3": 0.75,
+          "success@1_iou0.5": 0.5,
+          "hits@1_iou0.5": 1,
+          "success@5_iou0.5": 1.0,
+          "hits@5_iou0.5": 2,
+          "success@10_iou0.5": 1.0,
+          "hits@10_iou0.5": 2,
+          "mrr_iou0.5": 0.75,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 1,
+            "mean_iou": 0.873,
+            "mean_start_err_s": 2.5,
+            "mean_end_err_s": 0.05,
+            "mean_excess_s": 2.55
+          },
+          "end_to_end_top1_mean_iou": 0.436,
+          "success@5_iou0.3_ci95_grouped": null
+        },
+        "speech": {
+          "n_answerable": 6,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.5,
+          "hits@1_iou0.3": 3,
+          "success@5_iou0.3": 0.6667,
+          "hits@5_iou0.3": 4,
+          "success@10_iou0.3": 1.0,
+          "hits@10_iou0.3": 6,
+          "mrr_iou0.3": 0.6389,
+          "success@1_iou0.5": 0.5,
+          "hits@1_iou0.5": 3,
+          "success@5_iou0.5": 0.6667,
+          "hits@5_iou0.5": 4,
+          "success@10_iou0.5": 0.8333,
+          "hits@10_iou0.5": 5,
+          "mrr_iou0.5": 0.6111,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 4,
+            "mean_iou": 0.55,
+            "mean_start_err_s": 7.28,
+            "mean_end_err_s": 5.45,
+            "mean_excess_s": 5.05
+          },
+          "end_to_end_top1_mean_iou": 0.366,
+          "success@5_iou0.3_ci95_grouped": null
+        }
+      },
+      "by_content_type": {
+        "none": {
+          "n_answerable": 0,
+          "n_no_answer": 2,
+          "no_answer_false_positive_rate": 1.0,
+          "no_answer_note": "this arm has no abstention threshold, so it always returns results"
+        },
+        "talk": {
+          "n_answerable": 9,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.4444,
+          "hits@1_iou0.3": 4,
+          "success@5_iou0.3": 0.6667,
+          "hits@5_iou0.3": 6,
+          "success@10_iou0.3": 0.8889,
+          "hits@10_iou0.3": 8,
+          "mrr_iou0.3": 0.5926,
+          "success@1_iou0.5": 0.4444,
+          "hits@1_iou0.5": 4,
+          "success@5_iou0.5": 0.6667,
+          "hits@5_iou0.5": 6,
+          "success@10_iou0.5": 0.7778,
+          "hits@10_iou0.5": 7,
+          "mrr_iou0.5": 0.5741,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 6,
+            "mean_iou": 0.555,
+            "mean_start_err_s": 7.32,
+            "mean_end_err_s": 5.3,
+            "mean_excess_s": 5.84
+          },
+          "end_to_end_top1_mean_iou": 0.37,
+          "success@5_iou0.3_ci95_grouped": null
+        }
+      },
+      "per_query": [
+        {
+          "id": "17881369-a879-515c-96f9-0dc980a87810",
+          "query": "biggest aws instance you can rent, how many cores and how much memory",
+          "type": "mixed",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 450000,
+              "end_ms": 470000,
+              "score": 0.07779002065259337
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 570000,
+              "end_ms": 590000,
+              "score": 0.07059013200951363
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 100000,
+              "end_ms": 120000,
+              "score": 0.05780112044817927
+            }
+          ],
+          "first_hit@0.3": null,
+          "first_hit@0.5": null,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.2570951585976628,
+            "start_err_s": 12.3,
+            "end_err_s": 9.95,
+            "excess_s": 12.3
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "21a9799c-0204-5c0f-b1cf-591c95784ead",
+          "query": "even a fully managed distributed database doesn't hide its failure modes",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 290000,
+              "end_ms": 310000,
+              "score": 0.0737962692203384
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 30000,
+              "end_ms": 50000,
+              "score": 0.07168122922964311
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 0,
+              "end_ms": 20000,
+              "score": 0.07015739796585353
+            }
+          ],
+          "first_hit@0.3": 6,
+          "first_hit@0.5": 6,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "2c820b98-0534-5041-87ca-4be88166aae1",
+          "query": "people running 100 terabyte postgres instances on one server",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 120000,
+              "end_ms": 140000,
+              "score": 0.053125764912958284
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 400000,
+              "end_ms": 420000,
+              "score": 0.04771225838023
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 170000,
+              "end_ms": 190000,
+              "score": 0.044362602571557795
+            }
+          ],
+          "first_hit@0.3": 2,
+          "first_hit@0.5": 2,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "3d3f4e1d-5bff-5dae-acce-0f7a1d838346",
+          "query": "chocolate chip cookie recipe",
+          "type": "no_answer",
+          "groups": [
+            "no-answer:3d3f4e1d"
+          ],
+          "top": [
+            {
+              "video_id": "b8938456-216d-417a-9b6d-99b2181ab812",
+              "video_title": "STEMonstrations: Simple Machines",
+              "start_ms": 200000,
+              "end_ms": 220000,
+              "score": 0.04391223155929038
+            },
+            {
+              "video_id": "5e396b81-1755-4b2d-aeef-5b7139872ce6",
+              "video_title": "rash: asynchronous shell - live demo (excerpt)",
+              "start_ms": 50000,
+              "end_ms": 70000,
+              "score": 0.043290043290043295
+            },
+            {
+              "video_id": "b8938456-216d-417a-9b6d-99b2181ab812",
+              "video_title": "STEMonstrations: Simple Machines",
+              "start_ms": 110000,
+              "end_ms": 130000,
+              "score": 0.04198994778704924
+            }
+          ],
+          "top_score": 0.04391223155929038,
+          "content_type": "none"
+        },
+        {
+          "id": "4dd33f2a-007a-5e07-b2a8-467a56c08a42",
+          "query": "raft leader election",
+          "type": "no_answer",
+          "groups": [
+            "no-answer:4dd33f2a"
+          ],
+          "top": [
+            {
+              "video_id": "b8938456-216d-417a-9b6d-99b2181ab812",
+              "video_title": "STEMonstrations: Simple Machines",
+              "start_ms": 200000,
+              "end_ms": 220000,
+              "score": 0.03278688524590164
+            },
+            {
+              "video_id": "5e396b81-1755-4b2d-aeef-5b7139872ce6",
+              "video_title": "rash: asynchronous shell - live demo (excerpt)",
+              "start_ms": 120000,
+              "end_ms": 140000,
+              "score": 0.0315136476426799
+            },
+            {
+              "video_id": "5e396b81-1755-4b2d-aeef-5b7139872ce6",
+              "video_title": "rash: asynchronous shell - live demo (excerpt)",
+              "start_ms": 160000,
+              "end_ms": 180000,
+              "score": 0.02967032967032967
+            }
+          ],
+          "top_score": 0.03278688524590164,
+          "content_type": "none"
+        },
+        {
+          "id": "6a83bde9-80d0-54de-bca2-51902fcf8ca0",
+          "query": "u7inh-32tb.480xlarge",
+          "type": "ocr",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 460000,
+              "end_ms": 480000,
+              "score": 0.06504494976203068
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 440000,
+              "end_ms": 460000,
+              "score": 0.0315136476426799
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 400000,
+              "end_ms": 420000,
+              "score": 0.03007688828584351
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.8725,
+            "start_err_s": 2.5,
+            "end_err_s": 0.05,
+            "excess_s": 2.55
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "6d0eb938-fc5b-5d1d-85b1-e52ef978c38d",
+          "query": "what makes a database distributed instead of a single node with replicas",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 120000,
+              "end_ms": 140000,
+              "score": 0.07594630595190523
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 60000,
+              "end_ms": 80000,
+              "score": 0.07338434850038904
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 0,
+              "end_ms": 20000,
+              "score": 0.0708819659529867
+            }
+          ],
+          "first_hit@0.3": 6,
+          "first_hit@0.5": null,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.29721362229102166,
+            "start_err_s": 12.3,
+            "end_err_s": 10.4,
+            "excess_s": 10.4
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "aff3199d-50b3-54f2-9c48-8978ed3362b6",
+          "query": "early days of sharding at facebook and livejournal",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 170000,
+              "end_ms": 190000,
+              "score": 0.07872187376484538
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 130000,
+              "end_ms": 150000,
+              "score": 0.07589772563266861
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 150000,
+              "end_ms": 170000,
+              "score": 0.05955286332895441
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.7092198581560284,
+            "start_err_s": 6.6,
+            "end_err_s": 1.6,
+            "excess_s": 0.0
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "b3c00d10-dad2-5703-b3c0-9ae94780fa89",
+          "query": "proxy layer like vitess in front of the database",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 200000,
+              "end_ms": 220000,
+              "score": 0.07237173773168071
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 30000,
+              "end_ms": 50000,
+              "score": 0.06961792065958733
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 180000,
+              "end_ms": 200000,
+              "score": 0.06959120774910249
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.6363636363636364,
+            "start_err_s": 8.6,
+            "end_err_s": 1.8,
+            "excess_s": 1.8
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "c916b753-2f36-568e-9ec4-4254688dd38d",
+          "query": "poll on how large a database can be hosted on a single node",
+          "type": "ocr",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 120000,
+              "end_ms": 140000,
+              "score": 0.07278744166400869
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 400000,
+              "end_ms": 420000,
+              "score": 0.05878560145346581
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 380000,
+              "end_ms": 400000,
+              "score": 0.058170845005158504
+            }
+          ],
+          "first_hit@0.3": 2,
+          "first_hit@0.5": 2,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "e5b58b10-d029-5da6-a13c-9e4b3cc0664a",
+          "query": "why application developers shouldn't build their own sharding",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 290000,
+              "end_ms": 310000,
+              "score": 0.07877331500842248
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 240000,
+              "end_ms": 260000,
+              "score": 0.07524437605773222
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 220000,
+              "end_ms": 240000,
+              "score": 0.07500763125763125
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.5555555555555556,
+            "start_err_s": 1.6,
+            "end_err_s": 8.0,
+            "excess_s": 8.0
+          },
+          "content_type": "talk"
+        }
+      ]
+    },
+    "F": {
+      "label": "All modalities, learned scorer",
+      "overall": {
+        "n_answerable": 9,
+        "n_no_answer": 2,
+        "success@1_iou0.3": 0.5556,
+        "hits@1_iou0.3": 5,
+        "success@5_iou0.3": 0.8889,
+        "hits@5_iou0.3": 8,
+        "success@10_iou0.3": 0.8889,
+        "hits@10_iou0.3": 8,
+        "mrr_iou0.3": 0.6759,
+        "success@1_iou0.5": 0.5556,
+        "hits@1_iou0.5": 5,
+        "success@5_iou0.5": 0.7778,
+        "hits@5_iou0.5": 7,
+        "success@10_iou0.5": 0.7778,
+        "hits@10_iou0.5": 7,
+        "mrr_iou0.5": 0.6389,
+        "candidate_recall_iou0.3": 1.0,
+        "localization_top1_when_overlapping": {
+          "n": 6,
+          "mean_iou": 0.651,
+          "mean_start_err_s": 5.6,
+          "mean_end_err_s": 3.67,
+          "mean_excess_s": 4.44
+        },
+        "end_to_end_top1_mean_iou": 0.434,
+        "success@5_iou0.3_ci95_grouped": null,
+        "no_answer_false_positive_rate": 0.0
+      },
+      "by_query_type": {
+        "mixed": {
+          "n_answerable": 1,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.0,
+          "hits@1_iou0.3": 0,
+          "success@5_iou0.3": 0.0,
+          "hits@5_iou0.3": 0,
+          "success@10_iou0.3": 0.0,
+          "hits@10_iou0.3": 0,
+          "mrr_iou0.3": 0.0,
+          "success@1_iou0.5": 0.0,
+          "hits@1_iou0.5": 0,
+          "success@5_iou0.5": 0.0,
+          "hits@5_iou0.5": 0,
+          "success@10_iou0.5": 0.0,
+          "hits@10_iou0.5": 0,
+          "mrr_iou0.5": 0.0,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 1,
+            "mean_iou": 0.257,
+            "mean_start_err_s": 12.3,
+            "mean_end_err_s": 9.95,
+            "mean_excess_s": 12.3
+          },
+          "end_to_end_top1_mean_iou": 0.257,
+          "success@5_iou0.3_ci95_grouped": null
+        },
+        "no_answer": {
+          "n_answerable": 0,
+          "n_no_answer": 2,
+          "no_answer_false_positive_rate": 0.0
+        },
+        "ocr": {
+          "n_answerable": 2,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.5,
+          "hits@1_iou0.3": 1,
+          "success@5_iou0.3": 1.0,
+          "hits@5_iou0.3": 2,
+          "success@10_iou0.3": 1.0,
+          "hits@10_iou0.3": 2,
+          "mrr_iou0.3": 0.75,
+          "success@1_iou0.5": 0.5,
+          "hits@1_iou0.5": 1,
+          "success@5_iou0.5": 1.0,
+          "hits@5_iou0.5": 2,
+          "success@10_iou0.5": 1.0,
+          "hits@10_iou0.5": 2,
+          "mrr_iou0.5": 0.75,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 1,
+            "mean_iou": 0.873,
+            "mean_start_err_s": 2.5,
+            "mean_end_err_s": 0.05,
+            "mean_excess_s": 2.55
+          },
+          "end_to_end_top1_mean_iou": 0.436,
+          "success@5_iou0.3_ci95_grouped": null
+        },
+        "speech": {
+          "n_answerable": 6,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.6667,
+          "hits@1_iou0.3": 4,
+          "success@5_iou0.3": 1.0,
+          "hits@5_iou0.3": 6,
+          "success@10_iou0.3": 1.0,
+          "hits@10_iou0.3": 6,
+          "mrr_iou0.3": 0.7639,
+          "success@1_iou0.5": 0.6667,
+          "hits@1_iou0.5": 4,
+          "success@5_iou0.5": 0.8333,
+          "hits@5_iou0.5": 5,
+          "success@10_iou0.5": 0.8333,
+          "hits@10_iou0.5": 5,
+          "mrr_iou0.5": 0.7083,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 4,
+            "mean_iou": 0.694,
+            "mean_start_err_s": 4.7,
+            "mean_end_err_s": 3.0,
+            "mean_excess_s": 2.95
+          },
+          "end_to_end_top1_mean_iou": 0.462,
+          "success@5_iou0.3_ci95_grouped": null
+        }
+      },
+      "by_content_type": {
+        "none": {
+          "n_answerable": 0,
+          "n_no_answer": 2,
+          "no_answer_false_positive_rate": 0.0
+        },
+        "talk": {
+          "n_answerable": 9,
+          "n_no_answer": 0,
+          "success@1_iou0.3": 0.5556,
+          "hits@1_iou0.3": 5,
+          "success@5_iou0.3": 0.8889,
+          "hits@5_iou0.3": 8,
+          "success@10_iou0.3": 0.8889,
+          "hits@10_iou0.3": 8,
+          "mrr_iou0.3": 0.6759,
+          "success@1_iou0.5": 0.5556,
+          "hits@1_iou0.5": 5,
+          "success@5_iou0.5": 0.7778,
+          "hits@5_iou0.5": 7,
+          "success@10_iou0.5": 0.7778,
+          "hits@10_iou0.5": 7,
+          "mrr_iou0.5": 0.6389,
+          "candidate_recall_iou0.3": 1.0,
+          "localization_top1_when_overlapping": {
+            "n": 6,
+            "mean_iou": 0.651,
+            "mean_start_err_s": 5.6,
+            "mean_end_err_s": 3.67,
+            "mean_excess_s": 4.44
+          },
+          "end_to_end_top1_mean_iou": 0.434,
+          "success@5_iou0.3_ci95_grouped": null
+        }
+      },
+      "per_query": [
+        {
+          "id": "17881369-a879-515c-96f9-0dc980a87810",
+          "query": "biggest aws instance you can rent, how many cores and how much memory",
+          "type": "mixed",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 450000,
+              "end_ms": 470000,
+              "score": 5.262594223022461
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 570000,
+              "end_ms": 590000,
+              "score": 2.3163797855377197
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 430000,
+              "end_ms": 450000,
+              "score": 0.31946253776550293
+            }
+          ],
+          "first_hit@0.3": null,
+          "first_hit@0.5": null,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.2570951585976628,
+            "start_err_s": 12.3,
+            "end_err_s": 9.95,
+            "excess_s": 12.3
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "21a9799c-0204-5c0f-b1cf-591c95784ead",
+          "query": "even a fully managed distributed database doesn't hide its failure modes",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 290000,
+              "end_ms": 310000,
+              "score": 4.125247955322266
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 30000,
+              "end_ms": 50000,
+              "score": 3.435307264328003
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 0,
+              "end_ms": 20000,
+              "score": 3.105604410171509
+            }
+          ],
+          "first_hit@0.3": 4,
+          "first_hit@0.5": 4,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "2c820b98-0534-5041-87ca-4be88166aae1",
+          "query": "people running 100 terabyte postgres instances on one server",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 400000,
+              "end_ms": 420000,
+              "score": 3.486180543899536
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 450000,
+              "end_ms": 470000,
+              "score": -0.2966337203979492
+            },
+            {
+              "video_id": "459ed1be-522a-49b4-8a70-5e5b024f2151",
+              "video_title": "Replication in TiDB & MySQL",
+              "start_ms": 580000,
+              "end_ms": 600000,
+              "score": -0.7869577407836914
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.8737864077669902,
+            "start_err_s": 2.0,
+            "end_err_s": 0.6,
+            "excess_s": 2.0
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "3d3f4e1d-5bff-5dae-acce-0f7a1d838346",
+          "query": "chocolate chip cookie recipe",
+          "type": "no_answer",
+          "groups": [
+            "no-answer:3d3f4e1d"
+          ],
+          "top": [
+            {
+              "video_id": "b8938456-216d-417a-9b6d-99b2181ab812",
+              "video_title": "STEMonstrations: Simple Machines",
+              "start_ms": 200000,
+              "end_ms": 220000,
+              "score": 1.6945502758026123
+            },
+            {
+              "video_id": "5e396b81-1755-4b2d-aeef-5b7139872ce6",
+              "video_title": "rash: asynchronous shell - live demo (excerpt)",
+              "start_ms": 70000,
+              "end_ms": 90000,
+              "score": 1.257737636566162
+            },
+            {
+              "video_id": "32324646-2419-46af-8b4b-51441e21efc4",
+              "video_title": "STEMonstrations: Friction",
+              "start_ms": 0,
+              "end_ms": 20000,
+              "score": 1.2384343147277832
+            }
+          ],
+          "top_score": 1.6945502758026123,
+          "content_type": "none"
+        },
+        {
+          "id": "4dd33f2a-007a-5e07-b2a8-467a56c08a42",
+          "query": "raft leader election",
+          "type": "no_answer",
+          "groups": [
+            "no-answer:4dd33f2a"
+          ],
+          "top": [
+            {
+              "video_id": "b8938456-216d-417a-9b6d-99b2181ab812",
+              "video_title": "STEMonstrations: Simple Machines",
+              "start_ms": 200000,
+              "end_ms": 220000,
+              "score": 3.946762800216675
+            },
+            {
+              "video_id": "5e396b81-1755-4b2d-aeef-5b7139872ce6",
+              "video_title": "rash: asynchronous shell - live demo (excerpt)",
+              "start_ms": 120000,
+              "end_ms": 140000,
+              "score": 1.0867624282836914
+            },
+            {
+              "video_id": "5e396b81-1755-4b2d-aeef-5b7139872ce6",
+              "video_title": "rash: asynchronous shell - live demo (excerpt)",
+              "start_ms": 90000,
+              "end_ms": 110000,
+              "score": 1.0488271713256836
+            }
+          ],
+          "top_score": 3.946762800216675,
+          "content_type": "none"
+        },
+        {
+          "id": "6a83bde9-80d0-54de-bca2-51902fcf8ca0",
+          "query": "u7inh-32tb.480xlarge",
+          "type": "ocr",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 460000,
+              "end_ms": 480000,
+              "score": 6.0699663162231445
+            },
+            {
+              "video_id": "8fa27dc7-c803-4ce6-aa58-64202505da99",
+              "video_title": "OwnTech power electronics - hardware demo (excerpt)",
+              "start_ms": 80000,
+              "end_ms": 100000,
+              "score": 0.8133554458618164
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 440000,
+              "end_ms": 460000,
+              "score": 0.14374399185180664
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.8725,
+            "start_err_s": 2.5,
+            "end_err_s": 0.05,
+            "excess_s": 2.55
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "6d0eb938-fc5b-5d1d-85b1-e52ef978c38d",
+          "query": "what makes a database distributed instead of a single node with replicas",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 60000,
+              "end_ms": 80000,
+              "score": 3.9365804195404053
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 120000,
+              "end_ms": 140000,
+              "score": 3.436589002609253
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 100000,
+              "end_ms": 120000,
+              "score": 3.0636327266693115
+            }
+          ],
+          "first_hit@0.3": 3,
+          "first_hit@0.5": null,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "aff3199d-50b3-54f2-9c48-8978ed3362b6",
+          "query": "early days of sharding at facebook and livejournal",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 170000,
+              "end_ms": 190000,
+              "score": 5.945672988891602
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 130000,
+              "end_ms": 150000,
+              "score": 2.98818039894104
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 210000,
+              "end_ms": 230000,
+              "score": 0.05192685127258301
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.7092198581560284,
+            "start_err_s": 6.6,
+            "end_err_s": 1.6,
+            "excess_s": 0.0
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "b3c00d10-dad2-5703-b3c0-9ae94780fa89",
+          "query": "proxy layer like vitess in front of the database",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 200000,
+              "end_ms": 220000,
+              "score": 4.22086238861084
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 180000,
+              "end_ms": 200000,
+              "score": 1.80043625831604
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 40000,
+              "end_ms": 60000,
+              "score": 1.4703407287597656
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.6363636363636364,
+            "start_err_s": 8.6,
+            "end_err_s": 1.8,
+            "excess_s": 1.8
+          },
+          "content_type": "talk"
+        },
+        {
+          "id": "c916b753-2f36-568e-9ec4-4254688dd38d",
+          "query": "poll on how large a database can be hosted on a single node",
+          "type": "ocr",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 120000,
+              "end_ms": 140000,
+              "score": 3.187445878982544
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 400000,
+              "end_ms": 420000,
+              "score": 1.5912554264068604
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 70000,
+              "end_ms": 90000,
+              "score": 0.8657073974609375
+            }
+          ],
+          "first_hit@0.3": 2,
+          "first_hit@0.5": 2,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": null,
+          "content_type": "talk"
+        },
+        {
+          "id": "e5b58b10-d029-5da6-a13c-9e4b3cc0664a",
+          "query": "why application developers shouldn't build their own sharding",
+          "type": "speech",
+          "groups": [
+            "distributed databases"
+          ],
+          "top": [
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 290000,
+              "end_ms": 310000,
+              "score": 5.662226676940918
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 230000,
+              "end_ms": 250000,
+              "score": 3.0998222827911377
+            },
+            {
+              "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+              "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+              "start_ms": 150000,
+              "end_ms": 170000,
+              "score": 2.497044801712036
+            }
+          ],
+          "first_hit@0.3": 1,
+          "first_hit@0.5": 1,
+          "candidate_recall@0.3": true,
+          "candidate_overlap": true,
+          "loc_top1": {
+            "iou": 0.5555555555555556,
+            "start_err_s": 1.6,
+            "end_err_s": 8.0,
+            "excess_s": 8.0
+          },
+          "content_type": "talk"
+        }
+      ]
+    }
+  },
+  "protocol": {
+    "success": "top-K contains a result in a correct video with temporal IoU >= tau",
+    "taus": [
+      0.3,
+      0.5
+    ],
+    "ks": [
+      1,
+      5,
+      10
+    ],
+    "nms_iou": 0.3,
+    "uncertainty": "95% CI by bootstrap over video groups"
+  },
+  "primary_arm": "F",
+  "failures": [
+    {
+      "id": "17881369-a879-515c-96f9-0dc980a87810",
+      "query": "biggest aws instance you can rent, how many cores and how much memory",
+      "type": "mixed",
+      "category": "ranking_error",
+      "top": [
+        {
+          "video_id": "17d2d78d-a79d-4f4f-9ca3-0fbff10a61bb",
+          "video_title": "Distributed Databases: Essential or Optional? (excerpt)",
+          "start_ms": 450000,
+          "end_ms": 470000,
+          "score": 5.262594223022461
+        }
+      ]
+    }
+  ],
+  "latency": {
+    "A": {
+      "n": 11,
+      "p50_ms": 286.5,
+      "p95_ms": 597.8,
+      "embed_p50_ms": 245.9,
+      "retrieval_p50_ms": 16.7
+    },
+    "E": {
+      "n": 11,
+      "p50_ms": 356.7,
+      "p95_ms": 381.2,
+      "embed_p50_ms": 251.3,
+      "retrieval_p50_ms": 63.7
+    },
+    "F": {
+      "n": 11,
+      "p50_ms": 353.6,
+      "p95_ms": 382.6,
+      "embed_p50_ms": 251.9,
+      "retrieval_p50_ms": 63.0
+    }
+  }
+}

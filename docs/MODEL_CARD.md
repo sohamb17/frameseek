@@ -18,7 +18,8 @@ Revisions are pinned in `configs/index.yaml` and every stage manifest records th
 - **Weighting**: each query's candidates sum to weight 1, then classes are balanced.
 - **Selection**: `C ∈ {0.01, 0.1, 1, 10}` by dev success@5; the abstention threshold is chosen on dev only.
 - **Output**: a relevance score for ranking. It is **not** a calibrated probability.
-- **Status**: no model has been trained on real labels yet.
+- **Current model**: `3aa39153bb61`, trained on 37 answerable train queries (TiDB, rash and OwnTech recordings); `C = 0.01` selected on dev (9 queries, a tie with 0.1 broken toward stronger regularization); abstention threshold 4.22 chosen on dev. Largest standardized coefficients: transcript semantic score relative to the query's best (+0.59), OCR coverage (-0.37), transcript lexical relative score (+0.36), number of channels that found the window (+0.34).
+- **Held-out test result** (27 queries, NASA videos): success@5 0.67 vs 0.56 for fixed fusion (E) and 0.67 for transcript semantic search (B); success@1 0.48 vs 0.26 (E) and 0.56 (B). See [docs/results/retrieval.md](results/retrieval.md).
 
 ## Sample corpus (demo library)
 

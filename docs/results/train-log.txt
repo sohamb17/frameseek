@@ -1,0 +1,10 @@
+labeled queries: train=41 (answerable 37), dev=11; test is not touched
+Label provenance: 79 written and checked by an AI assistant (Claude) from transcripts, OCR and frames; a random sample of 20 was spot-checked by the author: 20 accepted as is, 0 corrected, 0 rejected.
+C=0.01   dev success@5 (IoU 0.3) = 0.889
+C=0.1    dev success@5 (IoU 0.3) = 0.889
+C=1.0    dev success@5 (IoU 0.3) = 0.778
+C=10.0   dev success@5 (IoU 0.3) = 0.778
+saved model 3aa39153bb61 -> models/ranker/3aa39153bb61.joblib; C=0.01; abstention threshold=4.22086238861084
+dev success@5: fixed fusion E=0.667 vs learned F=0.889
+largest standardized coefficients: [('t_sem_rel', 0.5860000252723694), ('ocr_coverage', -0.36800000071525574), ('t_lex_rel', 0.3569999933242798), ('n_channels', 0.3409999907016754), ('o_lex_rel', 0.3199999928474426), ('t_sem', 0.31700000166893005), ('o_sem_rel', 0.2849999964237213), ('v_max_rel', 0.27799999713897705)]
+activated 3aa39153bb61: search 'auto' now uses arm F

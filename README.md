@@ -113,7 +113,23 @@ Metric: **query success@K**, i.e. a top-K result in a correct video with tempora
 
 ## Results
 
-**Retrieval quality (arms A-F): not measured yet.** The pipeline, metrics and report are implemented and tested. The label set (`eval/labels.assistant.jsonl`, 79 queries) was written and checked by an AI assistant (Claude) from word-level transcript timings, on-screen text and 2-second frames; a random, type-stratified sample of 20 is spot-checked by the author in the Label tab, and training and evaluation refuse to run until that check is done. Every report states who wrote the labels and the spot-check outcome (accepted / corrected / rejected). No retrieval improvement is claimed before then.
+**Retrieval quality, held-out test split** (both NASA videos: never used for training, model selection or threshold choice; evaluated once). 27 queries, success = a top-K result in the right video with temporal IoU ≥ 0.3 ([full report](docs/results/retrieval-test.md), [summary with dev and cross-validation](docs/results/retrieval.md)):
+
+| Arm | System | success@1 | success@5 | MRR |
+|---|---|---|---|---|
+| A | transcript keywords | 0.48 | 0.63 | 0.56 |
+| B | transcript semantic | **0.56** | **0.67** | **0.60** |
+| C | transcript + on-screen text, fixed fusion | 0.33 | 0.56 | 0.42 |
+| D | visual only (CLIP) | 0.22 | 0.48 | 0.32 |
+| E | all modalities, fixed rank fusion | 0.26 | 0.56 | 0.39 |
+| F | all modalities, learned scorer | 0.48 | **0.67** | 0.57 |
+
+What this shows, and what it does not:
+
+- **Learning the combination helps over fixed fusion**: F beats E at every cutoff (top-1 7/27 → 13/27). Leave-one-video-group-out cross-validation on train+dev agrees (46 queries: success@1 0.41 → 0.54, success@5 0.76 → 0.80).
+- **It does not beat the best single channel**: transcript semantic search (B) ties F at success@5 and is slightly better at top-1. On these mostly narrated videos, extra modalities add noise that fixed fusion cannot ignore and the learned scorer only partly learns to discount.
+- **Localization is the main failure**: 6 of F's 9 test misses are boundary errors: the right place is among the candidates (for 4 of them it is the top result), but the answer is only 3.5-5.5 s long and search returns 20 s windows, which cannot reach IoU 0.3 with an answer shorter than 6 s. Shorter or adaptive windows are the next step.
+- **Small and not independent**: 27 test queries from one video series, so differences of one or two queries are noise. Labels were written and checked by an AI assistant (Claude) from the system's own transcripts, OCR and frames, and audited by a random, type-stratified author spot-check of 20: 20 accepted as is, 0 corrected, 0 rejected. They are not independent human ground truth.
 
 **Conversational layer (development set):** 14 scripted dialogues, 35 turns, checked end to end through the API ([full report](docs/results/conversation-dev.md)):
 
