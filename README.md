@@ -109,7 +109,7 @@ The evaluation compares six arms on the same index:
 | E | all modalities, fixed fusion | does integration help without training? |
 | F | E's exact candidate pool, learned scorer | does *learning* the combination help? |
 
-Metric: **query success@K**, i.e. a top-K result in a correct video with temporal IoU ≥ 0.3 against a human-labeled answer interval, plus MRR, candidate recall, localization error, no-answer false positives, grouped bootstrap intervals and p50/p95 latency.
+Metric: **query success@K**, i.e. a top-K result in a correct video with temporal IoU ≥ 0.3 against a labeled answer interval, plus MRR, candidate recall, localization error, no-answer false positives, grouped bootstrap intervals and p50/p95 latency.
 
 ## Results
 

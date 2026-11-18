@@ -58,7 +58,7 @@ func Load() (Config, error) {
 		MediaSecret:     env("FRAMESEEK_MEDIA_SECRET", "dev-media-secret-change-me"),
 		AuthMode:        env("FRAMESEEK_AUTH_MODE", "none"),
 		DefaultOwner:    env("FRAMESEEK_DEFAULT_OWNER", "demo"),
-		MaxUploadBytes:  envInt("FRAMESEEK_MAX_UPLOAD_BYTES", 2<<30), // 2 GiB (blueprint cap)
+		MaxUploadBytes:  envInt("FRAMESEEK_MAX_UPLOAD_BYTES", 2<<30), // 2 GiB
 		MaxImportBytes:  envInt("FRAMESEEK_MAX_IMPORT_BYTES", 2<<30),
 		SearchTimeout:   time.Duration(envInt("FRAMESEEK_SEARCH_TIMEOUT_MS", 15000)) * time.Millisecond,
 		ConvTimeout:     time.Duration(envInt("FRAMESEEK_CONVERSATION_TIMEOUT_MS", 30000)) * time.Millisecond,

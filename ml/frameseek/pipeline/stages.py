@@ -26,7 +26,7 @@ from .segments import FrameObs, Word, build_segments
 
 STAGES = ["probe", "playback", "extract", "asr", "ocr", "segment", "embed", "index"]
 
-# Coarse states shown in the UI (blueprint: queued, extracting, transcribing/OCR, embedding, indexing, ready).
+# Coarse states shown in the UI: queued, extracting, transcribing/OCR, embedding, indexing, ready.
 UI_STAGE = {
     "probe": "extracting", "playback": "extracting", "extract": "extracting",
     "asr": "transcribing", "ocr": "transcribing",

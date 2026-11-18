@@ -1,5 +1,5 @@
 # Query-time configuration. Changing it never triggers reindexing.
-per_channel_k: 30          # candidate budget per channel (blueprint starting point)
+per_channel_k: 30          # candidate budget per channel (starting point)
 visual_frame_k: 120        # frames pulled from the CLIP channel before mapping to segments
 rrf_k: 60                  # reciprocal-rank-fusion constant for the fixed-fusion baseline
 nms_iou: 0.3               # temporal non-max suppression between overlapping windows

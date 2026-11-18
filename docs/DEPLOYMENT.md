@@ -1,6 +1,6 @@
 # Deployment plan (not done yet)
 
-The project runs locally with `docker compose`. A public live demo is optional; the resume link can point at the GitHub repository with screenshots and a short demo video. Nothing below has been deployed or measured yet.
+The project runs locally with `docker compose`. Nothing below has been deployed or measured yet.
 
 ## Free or credit-covered options (checked October 2026; verify before signing up)
 
@@ -8,7 +8,7 @@ The project runs locally with `docker compose`. A public live demo is optional; 
 |---|---|---|
 | GitHub Student Developer Pack: **DigitalOcean** | $200 credit for one year | Yes. One 4 GB droplet runs the whole compose stack; index the demo library once, then serve search. |
 | GitHub Student Developer Pack: **Azure for Students** | $100 credit, no card required | Yes, a small Linux VM with Docker works the same way. |
-| **AWS Free Tier** (new accounts) | up to $200 credits for 6 months on the free plan | Matches the blueprint's AWS target (EC2 + S3). Requires care to stay within credits. |
+| **AWS Free Tier** (new accounts) | up to $200 credits for 6 months on the free plan | Covers an EC2 + S3 setup. Requires care to stay within credits. |
 | Campus compute (e.g. Illinois research computing) | GPU time, if you can get access | Useful for re-indexing with larger Whisper/CLIP models, not for hosting. |
 
 ## Recommended path

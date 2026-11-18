@@ -1,6 +1,6 @@
 # Evaluation data
 
-- `labels.jsonl` - human-written relevance labels exported from the UI (Label tab) with
+- `labels.jsonl` - relevance labels exported from the UI (Label tab; who wrote them: see Label provenance in `docs/MODEL_CARD.md`) with
   `docker compose exec worker python -m frameseek.eval.labels export`. Videos are referenced
   by content SHA-256, so labels survive re-ingestion of the same files.
 - `labels.assistant.jsonl` - 79 labels written and checked by an AI assistant (Claude) from word-level

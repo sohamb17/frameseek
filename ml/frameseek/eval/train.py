@@ -1,4 +1,4 @@
-"""Train the learned relevance scorer (arm F) on human-labeled queries.
+"""Train the learned relevance scorer (arm F) on labeled queries.
 
 Model: StandardScaler + LogisticRegression on query/segment pairs (pointwise classifier used
 for ranking). Candidates come from exactly the same multimodal pool as fixed fusion (arm E),

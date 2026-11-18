@@ -40,7 +40,7 @@ export default function EvalPage() {
         <h2 className="text-2xl font-bold text-white">Evaluation</h2>
         <div className="card mt-4 space-y-3 p-5 text-sm text-slate-300">
           <div className="flex items-center gap-2 font-semibold"><FlaskConical size={16} className="text-violet-300" /> No report yet</div>
-          <p className="text-slate-400">FrameSeek compares six retrieval arms on your human-labeled queries: keyword and semantic transcript search, transcript + on-screen text, visual only, fixed multimodal fusion, and the learned scorer.</p>
+          <p className="text-slate-400">FrameSeek compares six retrieval arms on your labeled queries: keyword and semantic transcript search, transcript + on-screen text, visual only, fixed multimodal fusion, and the learned scorer.</p>
           <ol className="list-decimal space-y-1 pl-5 text-slate-400">
             <li>Write labeled queries in the <b>Label</b> tab (aim for 60+, across all five query types).</li>
             <li>Freeze splits by video group, train, then evaluate:</li>

@@ -1,6 +1,6 @@
 """Retrieval and localization metrics (pure functions, unit-tested).
 
-Terminology follows the blueprint: "query success@K" means at least one of the top K
+Terminology: "query success@K" means at least one of the top K
 results is in a correct video and overlaps a labeled answer interval with temporal IoU >= tau.
 It is not called "recall" because only one valid hit is required.
 """

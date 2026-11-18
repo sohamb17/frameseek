@@ -1,6 +1,6 @@
 # Design decisions
 
-Short records of choices that are likely to come up in review or interviews.
+Short records of design choices and the reasons for them.
 
 ### 1. Go public API + Python ML service
 Inference stays in Python (PyTorch, scikit-learn, LangGraph); re-implementing a fitted sklearn pipeline in Go would create serving/training skew. Go owns the boundary that benefits from it: streaming uploads with hashing, an SSRF-safe dialer, deadlines, idempotent job creation and signed media. Cost: two languages and one extra network hop (a few ms on the compose network).
@@ -15,7 +15,7 @@ Readers never see partial state, failed reindexes keep the old version, and book
 Leases can expire while a slow worker is still running. Guarding every write with the attempt number makes a late, stale completion harmless. This gives at-least-once execution with idempotent effects; exactly-once is not claimed.
 
 ### 5. Fixed 20 s windows with 10 s stride
-Simple and comparable across arms; the blueprint's starting point. Known cost: answers shorter than about 6 s cannot reach IoU 0.3, which evaluation reports as boundary errors. Better boundaries (sentence/slide transitions) are a separate, later experiment so their effect can be attributed.
+Simple and comparable across arms. Known cost: answers shorter than about 6 s cannot reach IoU 0.3, which evaluation reports as boundary errors. Better boundaries (sentence/slide transitions) are a separate, later experiment so their effect can be attributed.
 
 ### 6. Logistic regression as the learned scorer
 Few labels, interpretable coefficients and per-result contributions, fast, and hard to overfit with regularization chosen on dev. It is a pointwise classifier used for ranking. A more complex model is justified only if dev results show underfitting.
